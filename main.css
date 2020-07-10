@@ -1,4 +1,53 @@
-div {
-    color: yellow;
-    font-size: 100px;
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    background: white;
+    border-bottom: 1px solid lightgray;
+}
+
+.container{
+    /* background: tomato; */
+    width: 980px;
+    margin: auto;
+}
+
+.container-left{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.logo{
+    float: left;
+    margin-right: 5px;
+}
+
+/* log 하위 자식의 img 만 찾아서 수정이 가능하게 함*/
+.logo img {
+    display: block; /* 이미지 아래 여백을 지워줌 */
+}
+
+.menu{
+    float: left;
+}
+
+.menu-item{
+    float: left;
+    /* margin-right: 10px; */
+    padding: 8px 10px;
+
+    /* 위 코드와 동일 형태
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 10px;
+    padding-left: 10px; */
+}
+
+/* float: left; 보정*/
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
 }

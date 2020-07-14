@@ -1,0 +1,21 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+div{
+    background: yellow;
+    font-size: 20px;
+    width: 200px; 
+    height: 150px;
+    display: inline; /*black, inline ...*/
+}
+/* 
+default 값
+ 
+div{ display: block;}
+h1{display: block;}
+p{display: block;}
+
+span{display: inline;} */

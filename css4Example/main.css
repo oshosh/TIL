@@ -1,0 +1,31 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+/* 블럭요소(div h1 p )는 크기 조절 가능
+defalt 값 width: 100% height: 0 
+수직으로 쌓임
+margin, padding 위 아래 좌우 사용 가능
+레이아웃 용도
+div{
+    background: red;
+    width: 200px; 
+    height: 150px;
+} */
+
+/* 인라인은 세로 가로 지정이 불가능 (span, img) 
+ 자신 안에있는 내용 만큼만 사용
+ 수평으로 쌓이면서 띄어쓰기도 들어감
+
+ 옆에 붙쳐작성하면 띄어쓰기가 빠짐
+ margin, padding 위 아래 x 좌우 사용 가능
+ 텍스트 용도
+*/
+span{
+    background: red;
+    /* width: 200px; 
+    height: 150px; */
+    margin: 20px;
+    padding: 20px;
+}

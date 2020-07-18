@@ -1,0 +1,29 @@
+b {
+    font-weight: normal;
+}
+
+em {
+    font-style: italic;
+    font-weight: bold;
+    color: brown;
+}
+
+span{
+    text-decoration: underline;
+}
+
+code {
+    color: orange;
+    background: lightgray;
+    border: 1px solid  orange;
+    padding: 3px;
+}
+
+kbd {
+    padding: 0 3px;
+    border-radius: 3px;
+    border-top: 2px solid rgb(240, 240, 240);
+    border-bottom: 2px solid rgb(205, 205, 205);
+    border-left: 2px solid rgb(240, 240, 240);
+    border-right: 2px solid rgb(225, 225, 225);
+}

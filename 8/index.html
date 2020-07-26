@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>테이블</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+    <caption>
+        데이터 타입과 값
+    </caption>
+    <table>
+        <tr>
+            <th colspan="2" id="td-data ">데이터</th>
+        </tr>
+        <tr>
+            <th abbr="Type" scope="col" headers="td-data "> 타입</th>
+            <th abbr="Value" scope="col" headers="td-data "> 값</th>
+        </tr>
+        <tr>
+            <td>알파벳</td>
+            <td>A</td>
+        </tr>
+        <tr>
+            <td>숫자</td>
+            <td>7</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <table>
+        <caption>
+            데이터 타입과 값
+        </caption>
+        <tr>
+            <th rowspan="2" id="th-data">데이터</th>
+            <th headers="td-data" id="th-type">타입</th>
+            <td headers="th-type">알파벳</td>
+            <td headers="th-type">숫자</td>
+        </tr>
+        <tr>
+            <!-- <td>5</td> -->
+            <th headers="td-data" id="th-value">값</th>
+            <td headers="th-value">A</td>
+            <td headers="th-value">1</td>
+        </tr>
+    </table>
+    <hr>
+
+    <table>
+        <caption>
+            데이터 타입과 값
+        </caption>
+
+        <colgroup>
+            <col style="background-color:tomato">
+            <col style="background-color: orange" span="2">
+        </colgroup>
+
+        <tr>
+            <th></th>
+            <th>타입</th>
+            <th>값</th>
+        </tr>
+        <tr>
+            <th>1</th>
+            <td>알파벳</td>
+            <td>A</td>
+        </tr>
+        <tr>
+            <th>2</th>
+            <td>숫자</td>
+            <td>7</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <table>
+        <caption>Fruits</caption>
+        <colgroup>
+            <col span="2" style="background-color: yellowgreen;">
+            <col style="background-color: tomato;">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>F123A</td>
+                <td>Apple</td>
+                <td>$22</td>
+            </tr>
+            <tr>
+                <td>F098B</td>
+                <td>Banana</td>
+                <td>$19</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

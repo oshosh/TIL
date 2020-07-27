@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+    <select name="과일" size="2" multiple>
+        <optgroup label="내가 좋아하는 과일">
+            <option value="사과임" label="사과"></option>
+            <option value="">포도</option>
+            <option value="">딸기</option>
+        </optgroup>
+
+        <optgroup label="내가 싫어하는 과일">
+            <option value="" selected>바나나</option>
+            <option value="">망고</option>
+        </optgroup>
+
+    </select>
+
+    <hr>
+    <input type="text" list="fruits">
+    <datalist name="과일" id="fruits">
+        <option>사과</option>
+        <option>포도</option>
+        <option>딸기</option>
+        <option>바나나</option>
+        <option>망고</option>
+    </datalist>
+
+    <progress value="0" max="100">70%</progress>
+
+    <script>
+        let progress = document.querySelector('progress')
+        let interval = setInterval(() => {
+            progress.value += 10
+            if (progress.value >= 100) {
+                clearInterval(interval)
+            }
+        }, 1000)
+    </script>
+    <hr>
+    <form action="/login" method="GET" novalidate target="_blank ">
+        <input type="email" name="email">
+        <input type="password" name="password">
+
+        <button type="submit">로그인</button>
+    </form>
+
+
+    <hr>
+    <form action="/login">
+        <input type="email" name="id">
+        <input type="password" name="pw">
+        <input type="submit" value="로그인">
+    </form>
+
+    <hr>
+    <input type="number" value="1234" disabled>
+    <input type="number" step="4" placeholder="숫자를 입력하세여">
+    <input type="checkbox" checked>
+    <input type="file" multiple>
+    <input type="image" src="./images/heropy.png" alt="이미지">
+
+    <hr>
+    <input type="radio" name="r1">
+    <input type="radio" name="r1">
+    <input type="radio" name="r1" checked>
+    <hr>
+
+    <form action="/login">
+        <input type="email" name="id">
+        <input type="password" name="pw">
+        <input type="submit" value="로그인">
+        <input type="reset" value="초기화">
+    </form>
+
+    <input type="text">
+
+    <hr>
+    <input type="checkbox" id="user-agreement">
+    <label for="user-agreement">동의함 ?</label>
+
+    <label><input type="checkbox">동의함?@</label>
+
+    <hr>
+    <button type="reset">초기화</button>
+    <button type="submit">제출</button>
+
+    <button onclick="justDoit()">누르세요~~~~~~~</button>
+    <script>
+        function justDoit() {
+            alert('클릭했습니다.')
+        }
+    </script>
+
+
+    <hr>
+    <textarea name="" id="" cols="30" rows="10" placeholder="설명을 입력하세요"></textarea>
+
+    <hr>
+
+    <fieldset>
+        <legend>
+            커피 사이즈
+        </legend>
+
+        <label for="">
+            <input type="radio" name="size" value="tall">
+            TALL
+        </label>
+
+        <label for="">
+            <input type="radio" name="size" value="grande">
+            GRANDE
+        </label>
+
+        <label for="">
+            <input type="radio" name="size" value="venti">
+            VENTI
+        </label>
+    </fieldset>
+</body>
+
+</html>

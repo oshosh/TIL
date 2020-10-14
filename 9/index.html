@@ -5,9 +5,63 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="./main.css">
+
+    <style>
+        /* 클래스로 찾기 */
+        .section {
+            width: 200px;
+            background: blue;
+            color: red;
+        }
+
+        /* id로 찾기 */
+        #section {
+            background: red;
+            height: 100px;
+            position: relative;
+        }
+    </style>
+
 </head>
 
 <body>
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+    <div class="section"></div>
+
+    <div id="section"></div>
+
+    <script>
+        let section = document.querySelector('.section')
+        let sectionId = document.getElementById('section')
+    </script>
+
+    <hr>
+
+    <div title="div태그 입니다">DIV</div>
+    <a href="https://www.naver.com" title="네이버 링크 가기">네이버 링크로...</a>
+
+    <hr>
+
+    <!-- 하이픈이 있으면 뒤에 첫글자는 대문자로 -->
+    <div id="me" data-my-name="Heropy" data-my-age="851">
+        name
+    </div>
+
+    <script>
+        function myName() {
+            const me = document.getElementById('me');
+
+            console.log(me.dataset.myName); // "Heropy"
+            console.log(me.dataset.myAge); // "851"
+
+            return me.dataset.myNam
+        }
+
+    </script>
+
 </body>
 
 </html>

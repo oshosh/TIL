@@ -12,10 +12,13 @@ function getTime() {
     ${hours === 0 || String(hours).length === 1 ? '0' + hours : hours}:${
         minutes === 0 || String(minutes).length === 1 ? '0' + minutes : minutes}:${
         getSeconds === 0 || String(getSeconds).length === 1 ? '0' + getSeconds : getSeconds}`
+
+    clockTitle.style.color = 'white'
+    clockTitle.style.fontSize = '50px'
 }
 
 function init() {
-    // getTime()
+    getTime()
     setInterval(getTime, 1000);
 }
 

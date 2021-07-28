@@ -1,0 +1,195 @@
+/* COMMON */
+.body__container {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+}
+a {
+  text-decoration: none;
+}
+
+/* BTN */
+.btn {
+    height: 34px;
+    background: #eee linear-gradient(to bottom, #fcfcfc, #eee);
+    border: 1px solid #d5d5d5;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    color: #333;
+}
+.btn:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.07)
+}
+.btn.btn--primary{
+  border: 1px solid #65b836;
+  color: #fff;
+  background: #55a532 linear-gradient(#91dd70, #55ae2e);
+}
+
+/* INPUT TEXT */
+.input--text {
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+  font-size : 16px;
+}
+.input--text:focus {
+  border-color: #51a7e8;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075), 0 0 5px rgba(81, 167, 232, 0.5);
+}
+
+/* Vendor Prefix (브라우저 업체별 접두사) */
+.input--text::-webkit-input-placeholder {color: #cacaca;}
+.input--text::-ms-input-placeholder {color: #cacaca;}
+.input--text::-moz-input-placeholder {color: #cacaca;}
+
+/* FLOAT CLEARFIX */
+.clearfix::after{
+  content: "";
+  clear: both;
+  display: block;
+}
+.float--left {
+  float: left;
+}
+.float--right {
+  float: right;
+}
+
+/* SUMMARY */
+.summary {
+
+}
+.summary__title {
+  font-size: 38px;
+  font-weight: 300;
+  line-height: 1.25;
+  margin-bottom: 18px;
+}
+.summary__description {
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #767676;
+}
+
+/* SECTION & INNER */
+.section {
+  position: relative;
+}
+.section .inner {
+  /*section과 inner 정의*/
+  max-width: 980px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* HEADER */
+header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
+  background: #fff;
+}
+header .inner {
+  height: 78px;
+}
+header .menu-group { 
+  display: flex;
+  align-items: center;
+  height: 100%; /*상위 부모 inner의 높이에 영향을 같이 받음*/
+}
+header .logo {
+  margin-right: 10px;
+}
+header .logo a {
+  /* a tag는 inline 요소이기 때문에 block 변환 후 사이즈 추가*/
+  background: url("../img/logo.svg");
+  width: 32px;
+  height: 32px;
+  display: block;
+  text-indent: -9999px; /*들여쓰기*/
+}
+header .logo a:hover {
+  background: url("../img/logo_on.svg");
+}
+header .main-menu {
+  display: flex;
+}
+header .main-menu li a{
+  /*li margin만 주거나 a 태그에서 padding만 줄 경우 글자 범위만 클릭이 되시면 block 까지 주면 주변 클릭시에도 입력이 가능해짐*/
+  display: block;
+  padding: 10px;
+  color: #3c4146;
+}
+header .main-menu li a:hover{
+  color: #4078c0;
+}
+header .sign-group{
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+header .btn-group {
+  order: 2;
+  /*btn 에서 inline-flex로 만든걸 수평으로 만들고 아래 #search-form과 #header .btn-group, .sign-in margin-right, header .sub-menu 값을 부여;*/
+  display: flex; 
+}
+header .btn-group .sign-in{
+  margin-right: 4px;
+}
+#search-form {
+  /*id 선택자는 고유하기때문에 header 부모 선택자 필요 없음*/
+  order: 1;
+  margin-right: 12px;
+}
+#search {
+  width: 160px;
+  font-size: 14px;
+}
+header .sub-menu {
+  display: flex;
+  margin-right: 10px;
+}
+#search + [type="submit"]{
+  /*형제선택자 +, 속성선택자 [속성이름="속성값"]*/
+  display: none;
+}
+header .sub-menu li a{
+  display: block;
+  padding: 8px;
+  font-size: 13px;
+  color: #3c4146;
+}
+header .sub-menu li a:hover{
+  color: #4078c0;
+}
+
+/* VISUAL */
+.section--visual {
+  background-image: url("../img/bg.jpg");
+  background-repeat: no-repeat;
+  background-position: bottom left;
+}
+.section--visual .inner {
+  padding: 160px 0;
+}

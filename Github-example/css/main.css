@@ -15,7 +15,7 @@ a {
     background: #eee linear-gradient(to bottom, #fcfcfc, #eee);
     border: 1px solid #d5d5d5;
     border-radius: 4px;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     padding: 0 12px;
     font-size: 14px;
@@ -183,6 +183,17 @@ header .sub-menu li a{
 header .sub-menu li a:hover{
   color: #4078c0;
 }
+#toggle-btn {
+  display: none;
+  background: url("../img/toggle-btn.svg");
+  width: 18px;
+  height: 24px;
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  cursor: pointer;
+  text-indent: -9999px;
+}
 
 /* VISUAL */
 .section--visual {
@@ -201,7 +212,7 @@ header .sub-menu li a:hover{
   bottom: 0;
   right: 0;
 
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(15, 9, 9, 0.3);
 }
 .section--visual .inner {
   padding: 160px 0;
@@ -364,4 +375,127 @@ header .sub-menu li a:hover{
   line-height: 1.5;
   flex-grow: 1;
   flex-basis: 0;
+}
+
+/* FOOTER */
+footer {
+
+}
+footer .inner {
+  padding: 50px 0;
+  border-top: 1px solid #eee;
+}
+footer .site-links {
+  display: flex;
+}
+footer .site-links li {
+  font-size: 12px;
+  margin-right: 10px;
+  color: #767676;
+}
+footer .site-links li a {
+  color: #4078c0;
+}
+footer .site-links li a:hover {
+  text-decoration: underline;
+}
+footer .logo {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+footer .logo:hover svg {
+  fill: #4078c0;
+}
+
+/* MEDIA */
+@media (max-width: 1024px) {
+  /*상위 .section .inner 보다 명시도을 높여서 작성해야함*/
+  header.section .inner{
+    max-width: none;
+    height: auto;
+    padding: 0 20px;
+  }
+  header .menu-group, 
+  header .sign-group {
+    float: none;
+  }
+  header .menu-group{
+    display: block;
+  }
+  header .logo {
+    padding: 12px 0;
+  }
+  header .main-menu{
+    display: block;
+    margin-bottom: 10px;
+  }
+  header .main-menu li {
+    border-top: 1px solid #e5e5e5;
+  }
+  header .main-menu li a {
+    padding: 16px 0;
+  }
+  header .sign-group {
+    display: block;
+    padding: 10px 0 20px;
+  }
+  header .btn-group {
+    display: block;
+  }
+  header .btn-group .btn{
+    justify-content: center;
+  }
+  header .btn-group .sign-in{
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
+  #search-form {
+    margin-top: 12px;
+    margin-right: 0;
+  }
+  #search {
+    width: 100%;
+    height: 42px;
+    text-align: center;
+  }
+  header .sub-menu {
+    margin-top: 12px;
+    margin-right: 0;
+    justify-content: center;
+  }
+  header .toggle {
+    display: none;
+  }
+  header .toggle.on {
+    display: block;
+  }
+  #toggle-btn {
+    display: block;
+  }
+
+  /* VISUAL */
+  .section--visual {
+    background-image: url("../img/bg-small.jpg") ;
+  }
+  .section--visual .inner {
+    display: block;
+    max-width: none;
+    padding: 80px 20px;
+  }
+  .section--visual .summary {
+    text-align: center;
+    margin-right: 0;
+    margin-bottom: 50px;
+  }
+  #sign-form {
+    width: auto;
+    max-width: 500px;
+    margin: 0 auto;
+  }
 }

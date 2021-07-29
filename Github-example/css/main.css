@@ -265,7 +265,7 @@ header .sub-menu li a:hover{
 }
 .section--feature .video {
   max-width: 650px;
-  margin: 50px auto 50px auto;
+  margin: 50px auto;
 }
 .section--feature .video-ratio {
   height: 0;
@@ -278,4 +278,90 @@ header .sub-menu li a:hover{
   left: 0;
   width: 100%;
   height: 100%;
+}
+.section--feature .tiles {
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+.section--feature .tiles .inner {
+  max-width: 1200px;
+}
+.section--feature .tiles ul {
+  /* display: grid;
+  grid-template-columns: repeat(4,1fr); */
+}
+.section--feature .tiles li {
+  padding: 34px 24px;
+  text-align: center;
+  line-height: 1.5;
+  border-right: 1px solid #e5e5e5; 
+  box-sizing: border-box;
+  float: left;
+  width: 25%;
+}
+.section--feature .tiles li:last-child {
+  border-right: none;
+}
+.section--feature .tiles li img {
+  max-width: 100%;
+  padding: 14px 10% 24px; /*위 좌우 아래*/
+  box-sizing: border-box;
+}
+.section--feature .tiles li h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.section--feature .tiles li p {
+  font-size: 14px;
+  color: #767676;
+}
+
+/* WHERE IS */
+.section--where-is {
+
+}
+.section--where-is .inner{
+  padding-top: 80px;
+}
+#map {
+  width: 100%;
+  height: 400px;
+  margin-top: 40px;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-bottom: none;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+  box-sizing: border-box;
+}
+
+/* PRICING CARD */
+.section--pricing {
+  background: linear-gradient(#f5f5f5, #fff);
+}
+.section--pricing .inner{
+  padding: 80px 0;
+}
+.section--pricing .card{
+  display: flex;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+.section--pricing .card .cell{
+  padding: 24px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  border-right: 1px solid #e5e5e5;
+}
+.section--pricing .card .cell1 .btn{
+  height: 50px;
+  font-size: 16px;
+}
+.section--pricing .card .cell2{
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.5;
+  flex-grow: 1;
+  flex-basis: 0;
 }

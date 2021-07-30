@@ -1,0 +1,47 @@
+/*COMMON*/
+.summary__title {
+    font-size: 34px !important;
+}
+.summary__description {
+    font-size: 22px;
+}
+
+/* FEATURE */
+.section--feature .tiles li {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* WHERE IS */
+#map {
+    /*기존 맵 사이즈 100프로 와 margin-top: 40px로 지정이 되어 있기때문에
+    width를 auto로 초기화 시키고 양쪽 폭만 다시 넓혀줌
+    */
+    width: auto;
+    margin: 40px -20px 0 -20px;
+    border-left: none;
+    border-right: none;
+}
+
+/*PRICING CARD*/
+.section--pricing .card {
+    display: block;
+}
+.section--pricing .card .cell2{
+    border-left: none;
+    border-top: 1px solid #e5e5e5;
+}
+
+/*FOOTER*/
+footer .site-links{
+    float: none;
+    display: block;
+    text-align: center;
+}
+footer .site-links:first-child {
+    margin-bottom: 20px;
+}
+footer .site-links li {
+    display: inline;
+}

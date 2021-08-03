@@ -1,0 +1,83 @@
+$blue: #228be6;
+$gray: #495057;
+$pink: #f06595;
+
+@mixin button-color($color) {
+    background: $color;
+        &:hover {
+            background:lighten($color, 10%) ;
+        }
+        &:active {
+            background:darken($color, 10%) ;
+        }
+        &.outline {
+            color: $color;
+            background: none;
+            border: 2px solid black;
+            &:hover {
+                background: $color;
+                color: #fff;
+            }
+        }
+}
+@mixin button-size($btn-size) {
+    @if $btn-size == 'large'{
+        height: 3rem;
+        font-size: 1.25rem;
+    }@else if $btn-size == 'medium' {
+        height: 2.25rem;
+        font-size: 1rem;
+    }@else {
+        height: 1.75rem;
+        font-size: 1rem;
+    }
+}
+.Button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 700;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    padding: 0 1rem;
+
+    &.large{
+        @include button-size('large')
+    }
+
+    &.medium{
+        @include button-size('medium')
+    }
+    
+    &.small{
+        @include button-size('small')
+    }
+    
+    &.blue{
+        @include button-color($blue)
+    }
+    &.gray{
+        @include button-color($gray)
+    }
+    &.pink{
+        @include button-color($pink)
+    }
+
+    &.fullWidth {
+        width: 100%;
+        justify-content: center;
+
+        & + & {
+            margin-left: 0;
+            margin-top: 1rem;
+        }
+    }
+
+    & + & {
+        margin-left: 1rem;
+    }
+}

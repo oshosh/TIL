@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Movie from './Movie';
-
+import "./App.css";
 
 function App() {
   const [inputs, setInputs] = useState({
@@ -32,20 +32,30 @@ function App() {
   const { isLoading, movies } = inputs
 
   return (
-    <div>{isLoading ? 'Loading....' : movies.map(movie => {
-      return (
-        <Movie
-          key={movie.id}
-          id={movie.id}
-          year={movie.year}
-          title={movie.title}
-          summary={movie.summary}
-          poster={movie.medium_cover_image}
-        />
-      )
-    })}
+    <section className='container'>
+      {isLoading ? (
+        <div className='loader'>
+          <span className='loader__text'>Loading...</span>
+        </div>
+      ) : (
+        <div className='movies'>
+          {movies.map(movie => {
+            return (
+              <Movie
+                key={movie.id}
+                id={movie.id}
+                year={movie.year}
+                title={movie.title}
+                summary={movie.summary}
+                poster={movie.medium_cover_image}
+                genres={movie.genres}
+              />
+            )
+          })}
+        </div>
+      )}
 
-    </div>
+    </section>
   );
 }
 

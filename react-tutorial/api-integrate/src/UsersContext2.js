@@ -39,7 +39,6 @@ const UsersDispatchContext2 = createContext(null)
 export function UsersProvider2({ children }) {
 
     const [state, dispatch] = useReducer(userReducer, initialState);
-    debugger
     return (
         <UsersStateContext2.Provider value={state}>
             <UsersDispatchContext2.Provider value={dispatch}>

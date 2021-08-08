@@ -1,13 +1,13 @@
 import React from 'react';
-import { UsersProvider } from './contextapi_ useRedcer/UsersContext';
-import Users_context from './contextapi_ useRedcer/Users_context';
+import { UsersProvider_refactory } from './contextapi_ useRedcer_refactory/UsersContext_reactory';
+import Users_context_refactory from './contextapi_ useRedcer_refactory/Users_context_refactory';
 
 function App() {
   return (
     <>
-      <UsersProvider>
-        <Users_context />
-      </UsersProvider>
+      <UsersProvider_refactory>
+        <Users_context_refactory></Users_context_refactory>
+      </UsersProvider_refactory>
     </>
 
   );

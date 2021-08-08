@@ -69,6 +69,5 @@ export function createAsyncHandler(type, key) {
         }
     }
 
-    // 반환합니다
     return handler;
 }

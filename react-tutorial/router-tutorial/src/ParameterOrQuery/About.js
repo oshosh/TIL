@@ -7,7 +7,6 @@ function About({ location }) {
     const query = qs.parse(location.search, {
         ignoreQueryPrefix: true
     })
-
     const detail = query.detail === 'true';
 
     return (

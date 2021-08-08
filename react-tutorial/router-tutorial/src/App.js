@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import About from './About';
-import Home from './Home';
+import About from './ParameterOrQuery/About';
+import Home from './ParameterOrQuery/Home';
 import Profile from './ParameterOrQuery/Profile';
 
 function App() {

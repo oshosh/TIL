@@ -1,8 +1,9 @@
 # Movie App
 
-React JS (인터넷에 돌아다니는 클론 코딩 convert 작업)
+React JS
 
 - class compontent의 오래된 구조를 hook + 라이브러리를 합쳐 변환함
+- https://github.com/nomadcoders/movie_app_2019 출처
 
 사용 라이브러리
 

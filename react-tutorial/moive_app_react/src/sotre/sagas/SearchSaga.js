@@ -9,9 +9,9 @@ const fetchData = async () => {
 function* fetchSearchSaga(action) {
 
     try {
-        const json = {
-            name: action.payload
-        }
+        // const json = {
+        //     name: action.payload
+        // }
 
         // const { data } = yield call([axios, 'post'], '/api/nba/player', json)
         const { data: {

@@ -4,32 +4,26 @@ import App from './App';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './modules';
+// import myLogger from './middlewares/myLogger';
 import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import ReduxThunk from 'redux-thunk'
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import createSagaMiddleware from 'redux-saga'
-import { rootSaga } from './modulesReduxSaga';
 
 const customHistory = createBrowserHistory();
-const sagaMiddleware = createSagaMiddleware({
-  context: {
-    history: customHistory
-  }
-})
 
 const store = createStore(
   rootReducer,
   composeWithDevTools(
     applyMiddleware(
-      sagaMiddleware,
-      logger,
+      ReduxThunk.withExtraArgument(
+        { history: customHistory }
+      ),
+      logger
     )
   )
-);
-
-// rootSaga로 등록된 내보낼 Saga 실행 
-sagaMiddleware.run(rootSaga)
+)
 
 ReactDOM.render(
   <Router history={customHistory}>

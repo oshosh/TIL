@@ -38,3 +38,4 @@ const solution = (new_id) => {
     }
     return sliceID
 }
+module.exports = solution;

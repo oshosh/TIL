@@ -26,6 +26,7 @@ const solution = (lottos, win_nums) => {
     } else {
         temp2.push(1)
     }
-
     return temp2.reverse();
 }
+
+module.exports = solution;

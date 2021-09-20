@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "jest": "^27.2.0"
+  },
+  "scripts": {
+    "test": "jest --verbose"
+  },
+  "type": "module",
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)"
+    ]
+  }
+}

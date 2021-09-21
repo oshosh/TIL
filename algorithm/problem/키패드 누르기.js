@@ -1,3 +1,67 @@
+// 2,5,8,0 입력에 중심을 둬서 keypad에 거리 마다 절대적으로 필요한 수치만 계산해서 비교
+// 2를 중심으로 근처 값은 1,3,5 이며 각각의 절대값은 1과 3이다.
+// 5 또한 근처 값음 2,4,6,8 이며 각각의 절대값음 1,3으로 이뤄져 있다.
+// 최저 숫자 2를 중심으로 필요한 배열은 아래 keypad에 구성되어 있다.
+
+function JuHand(hand) {
+    switch (hand) {
+        case 'left':
+            return 'L'
+        case 'right':
+            return 'R'
+    }
+}
+
+function solution(numbers, hand) {
+    let answer = []
+    let currentPosition = { L: 10, R: 12 }
+    let myHand = JuHand(hand)
+    let keypad = {
+        1: [1, 3], 2: [2, 4, 6], 3: [5, 7, 9], 4: [8, 10]
+    }
+
+    numbers.forEach((item) => {
+        if (item === 1 || item === 4 || item === 7) {
+            currentPosition.L = item
+            return answer.push('L')
+        } else if (item === 3 || item === 6 || item === 9) {
+            currentPosition.R = item
+            return answer.push('R')
+        } else if (item === 2 || item === 5 || item === 8 || item === 0) {
+            if (item === 0) {
+                item = 11
+            }
+
+            let distanceL = 0
+            let distanceR = 0
+
+            distanceL = Math.abs(item - currentPosition.L)
+            distanceR = Math.abs(item - currentPosition.R)
+
+            Object.values(keypad).forEach((arrItem, idx) => {
+                if (arrItem.includes(distanceL)) {
+                    distanceL = Number(Object.keys(keypad)[idx])
+                }
+                if (arrItem.includes(distanceR)) {
+                    distanceR = Number(Object.keys(keypad)[idx])
+                }
+            })
+
+            if (distanceL === distanceR) {
+                currentPosition[myHand] = item
+                return answer.push(myHand)
+            } else if (distanceL < distanceR) {
+                currentPosition.L = item
+                return answer.push('L')
+            } else {
+                currentPosition.R = item
+                return answer.push('R')
+            }
+        }
+    })
+    return answer.join('');
+}
+
 // 거리가 같음을 증명해야함.
 // 서로간의 거리가 1과 3인 경우 서로 거리 1만큼으로 같다.
 
@@ -19,54 +83,46 @@
 // 11 - 8 = 3 / 3 = 1    +   3 % 3 = 0  = 1
 // 11 - 6 = 5 / 3 = 1    +   5 % 3 = 5  = 6
 
-function JuHand(hand) {
-    switch (hand) {
-        case 'left':
-            return 'L'
-        case 'right':
-            return 'R'
-    }
-}
 
-function solution(numbers, hand) {
-    let answer = []
-    let currentPosition = { L: 10, R: 12 }
-    let myHand = JuHand(hand)
-    let distanceL = null
-    let distanceR = null
+// function solution(numbers, hand) {
+//     let answer = []
+//     let currentPosition = { L: 10, R: 12 }
+//     let myHand = JuHand(hand)
+//     let distanceL = null
+//     let distanceR = null
 
-    numbers.forEach((item) => {
-        if (item === 1 || item === 4 || item === 7) {
-            currentPosition.L = item
-            return answer.push('L')
-        } else if (item === 3 || item === 6 || item === 9) {
-            currentPosition.R = item
-            return answer.push('R')
-        } else if (item === 2 || item === 5 || item === 8 || item === 0) {
-            if (item === 0) {
-                item = 11
-            }
+//     numbers.forEach((item) => {
+//         if (item === 1 || item === 4 || item === 7) {
+//             currentPosition.L = item
+//             return answer.push('L')
+//         } else if (item === 3 || item === 6 || item === 9) {
+//             currentPosition.R = item
+//             return answer.push('R')
+//         } else if (item === 2 || item === 5 || item === 8 || item === 0) {
+//             if (item === 0) {
+//                 item = 11
+//             }
 
-            distanceL = Math.abs(item - currentPosition.L)
-            distanceR = Math.abs(item - currentPosition.R)
+//             distanceL = Math.abs(item - currentPosition.L)
+//             distanceR = Math.abs(item - currentPosition.R)
 
-            distanceL = Math.floor(distanceL / 3) + Math.floor(distanceL % 3);
-            distanceR = Math.floor(distanceR / 3) + Math.floor(distanceR % 3);
+//             distanceL = Math.floor(distanceL / 3) + Math.floor(distanceL % 3);
+//             distanceR = Math.floor(distanceR / 3) + Math.floor(distanceR % 3);
 
-            if (distanceL === distanceR) {
-                currentPosition[myHand] = item
-                return answer.push(myHand)
-            } else if (distanceL < distanceR) {
-                currentPosition.L = item
-                return answer.push('L')
-            } else {
-                currentPosition.R = item
-                return answer.push('R')
-            }
-        }
-    })
-    return answer.join('');
-}
+//             if (distanceL === distanceR) {
+//                 currentPosition[myHand] = item
+//                 return answer.push(myHand)
+//             } else if (distanceL < distanceR) {
+//                 currentPosition.L = item
+//                 return answer.push('L')
+//             } else {
+//                 currentPosition.R = item
+//                 return answer.push('R')
+//             }
+//         }
+//     })
+//     return answer.join('');
+// }
 
 
 // // 하드 코딩

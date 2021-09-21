@@ -62,6 +62,8 @@ function solution(numbers, hand) {
     return answer.join('');
 }
 
+module.exports = solution;
+
 // 거리가 같음을 증명해야함.
 // 서로간의 거리가 1과 3인 경우 서로 거리 1만큼으로 같다.
 

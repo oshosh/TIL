@@ -67,3 +67,57 @@ function solution(numbers, hand) {
     })
     return answer.join('');
 }
+
+
+// // 하드 코딩
+// function solution(numbers, hand) {
+//     let answer = []
+//     let currentPosition = { L: 10, R: 12 }
+//     let myHand = JuHand(hand)
+//     let keypad = {
+//         2: { 1: [1, 3, 5], 2: [4, 6, 8], 3: [7, 9, 11], 4: [10, 12] },
+//         5: { 1: [2, 4, 6, 8], 2: [1, 3, 7, 9, 11], 3: [10, 12] },
+//         8: { 1: [5, 7, 9, 11], 2: [4, 6, 10, 12, 2], 3: [1, 3] },
+//         11: { 1: [10, 8, 12], 2: [5, 7, 9], 3: [2, 4, 6], 4: [1, 3] },
+//     }
+
+//     numbers.forEach((item) => {
+//         if (item === 1 || item === 4 || item === 7) {
+//             currentPosition.L = item
+//             return answer.push('L')
+//         } else if (item === 3 || item === 6 || item === 9) {
+//             currentPosition.R = item
+//             return answer.push('R')
+//         } else if (item === 2 || item === 5 || item === 8 || item === 0) {
+//             if (item === 0) {
+//                 item = 11
+//             }
+
+//             let distanceL = 0
+//             let distanceR = 0
+
+//             Object.values(keypad[item]).forEach((arrItem, idx) => {
+//                 if (arrItem.includes(currentPosition.L)) {
+//                     distanceL = Number(Object.keys(keypad[item])[idx])
+//                 }
+//                 if (arrItem.includes(currentPosition.R)) {
+//                     distanceR = Number(Object.keys(keypad[item])[idx])
+//                 }
+//             })
+
+//             // 인덱스 같으면 
+//             if (distanceL === distanceR) {
+//                 currentPosition[myHand] = item
+//                 return answer.push(myHand)
+//             } else if (distanceL < distanceR) {
+//                 currentPosition.L = item
+//                 return answer.push('L')
+//             } else {
+//                 currentPosition.R = item
+//                 return answer.push('R')
+//             }
+//         }
+
+//     })
+//     return answer.join('');
+// }

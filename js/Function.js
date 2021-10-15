@@ -76,3 +76,22 @@ function sum(a, b, c) {
 
 var number = curry(sum)
 console.log(number(6)(2, 3))
+
+
+//4. 콜백
+function funcCall(callback) {
+    console.log('나는 funcCall 이야')
+    callback();
+}
+
+funcCall(function () {
+    console.log('나는 callback 인데 ? ㅋ')
+})
+
+funcCall(() => {
+    console.log('애로우 펑션도 된다구')
+})
+
+funcCall(() => {
+    console.log('애로우 펑션도 된다구')
+})

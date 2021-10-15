@@ -6,3 +6,7 @@
 
 ## JS - 호이스팅
  - https://blog.naver.com/qhanfckwsmsd/222537207058
+
+
+## JS - new Function, function 객체호출 (모던, es6), 커링
+ - https://blog.naver.com/qhanfckwsmsd/222538188799

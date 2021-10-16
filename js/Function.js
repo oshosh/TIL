@@ -95,3 +95,18 @@ funcCall(() => {
 funcCall(() => {
     console.log('애로우 펑션도 된다구')
 })
+
+function ask(boolen, yes, no) {
+    if (boolen) yes()
+    else no()
+}
+
+function showOk() {
+    console.log('call back yes 호출~')
+}
+
+function showNoob() {
+    console.log('call back no 호출~')
+}
+
+ask(false, showOk, showNoob)

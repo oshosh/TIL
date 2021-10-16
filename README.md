@@ -8,5 +8,5 @@
  - https://blog.naver.com/qhanfckwsmsd/222537207058
 
 
-## JS - new Function, function 객체호출 (모던, es6), 커링
+## JS - new Function, function 객체호출 (모던, es6), 커링, 콜백
  - https://blog.naver.com/qhanfckwsmsd/222538188799

@@ -10,3 +10,7 @@
 
 ## JS - new Function, function 객체호출 (모던, es6), 커링, 콜백
  - https://blog.naver.com/qhanfckwsmsd/222538188799
+
+
+## JS - 실행컨텍스트 (변수객체, 스코프 체인)
+ - https://blog.naver.com/qhanfckwsmsd/222539946904

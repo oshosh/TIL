@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(str) {
+        let arr = str.split("");
+
+        const answer = arr.filter((item, idx) => {
+          return arr.indexOf(item) === idx;
+        });
+        return answer;
+      }
+
+      function solution2(str) {
+        let arr = str.split("");
+
+        let set = new Set(arr);
+        answer = [...set];
+        return answer;
+      }
+
+      function solution3(str) {
+        let arr = str.split("");
+
+        let newArr = [];
+        arr.forEach((item) => {
+          if (!newArr.includes(item)) {
+            newArr.push(item);
+          }
+        });
+
+        answer = newArr;
+        return answer;
+      }
+
+      console.log(solution("ksekkset"));
+    </script>
+  </body>
+</html>

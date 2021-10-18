@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(str) {
+        let answer = str.split("");
+
+        let index = 0;
+        answer = answer.reduce((acc, cur) => {
+          // A(65) ~ Z(90)
+          if (cur.charCodeAt(0) >= 65 && cur.charCodeAt(0) <= 90) acc++;
+          // a(97) ~ z(122)
+          if (cur.charCodeAt(0) >= 97 && cur.charCodeAt(0) <= 122) index++;
+
+          return acc;
+        }, 0);
+        return answer;
+      }
+
+      function solution2(str) {
+        let answer = 0;
+
+        for (const x of str) {
+          if (x === x.toUpperCase()) answer++;
+        }
+      }
+
+      console.log(solution2("KoreaTimeGood"));
+    </script>
+  </body>
+</html>

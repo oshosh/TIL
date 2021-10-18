@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(str) {
+        let answer = str;
+        const reg = /A/g;
+        answer = answer.replace(reg, "#");
+
+        return answer;
+      }
+
+      function solution2(str) {
+        let answer = "";
+
+        for (let x of str) {
+          if (x === "A") answer += "#";
+          else answer += x;
+        }
+
+        return answer;
+      }
+
+      console.log(solution2("BANANA"));
+    </script>
+  </body>
+</html>

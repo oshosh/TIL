@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(str) {
+        let answer = str.toUpperCase();
+        return answer;
+      }
+
+      function solution2(str) {
+        let answer = "";
+
+        for (const cur of str) {
+          if (cur.charCodeAt(0) >= 97 && cur.charCodeAt(0) <= 122) {
+            answer += String.fromCharCode(cur.charCodeAt(0) - 32);
+          } else {
+            answer += cur;
+          }
+        }
+        return answer;
+      }
+
+      console.log(solution2("ItisTimeToStudy"));
+    </script>
+  </body>
+</html>

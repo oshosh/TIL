@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = "";
+        let value = Number.MIN_SAFE_INTEGER;
+
+        for (let x of arr) {
+          let currentLength = x.length;
+          if (value < currentLength) {
+            value = currentLength;
+            answer = x;
+          }
+        }
+        return answer;
+      }
+      let arr = ["teacher", "time", "student", "beautiful", "good"];
+
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

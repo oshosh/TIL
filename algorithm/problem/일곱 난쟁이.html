@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = 0;
+        let sum = 0;
+
+        arr.forEach((element) => {
+          sum += element;
+        });
+
+        let number = sum - 100;
+
+        let idx = 0;
+        let idx2 = 0;
+
+        arr.map((element, index) => {
+          let n1 = number - element;
+          let n2 = false;
+          if (element !== n1) {
+            n2 = arr.includes(n1);
+
+            if (n2) {
+              idx2 = arr.findIndex((v) => v === n1);
+              return [(idx = index), idx2];
+            }
+          }
+        });
+
+        let currentIndex = arr.indexOf(arr[idx]);
+
+        if (currentIndex > -1) {
+          arr.splice(currentIndex, 1);
+          currentIndex = arr.indexOf(arr[idx2]);
+          arr.splice(currentIndex, 1);
+
+          answer = arr;
+        }
+
+        return answer;
+      }
+
+      function solution2(arr) {
+        let answer = null;
+        let sum = 0;
+
+        arr.map((item) => (sum += item));
+
+        let idx,
+          idx2 = 0;
+
+        arr.map((item, i) => {
+          arr.map((item2, j) => {
+            if (sum - (item + item2) === 100) {
+              if (i !== j) {
+                return [(idx = i), (idx2 = j)];
+              }
+            }
+          });
+        });
+        arr.splice(idx, 1);
+        arr.splice(idx2, 1);
+
+        answer = arr;
+        return answer;
+      }
+
+      let arr = [20, 7, 23, 19, 10, 15, 25, 8, 13];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

@@ -62,6 +62,7 @@ const MovieGenres = styled.ul`
 
 function Movie({ id, year, title, summary, poster, genres }) {
     return (
+
         <MovieCompontent>
             <Link to={{
                 pathname: `/movie/${id}`,

@@ -7,7 +7,7 @@ const fetchData = async () => {
 }
 
 function* fetchSearchSaga(action) {
-
+    // 2번 실행
     try {
         // const json = {
         //     name: action.payload
@@ -25,5 +25,6 @@ function* fetchSearchSaga(action) {
 }
 
 export default function* watchSearch() {
+    // 1번 실행
     yield takeEvery(actions.SEARCH, fetchSearchSaga);
 }

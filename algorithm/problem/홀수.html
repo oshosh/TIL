@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer;
+        let sum = 0;
+        let sumArr = [];
+
+        arr.forEach((item) => {
+          if (item % 2 === 1) {
+            // 홀수
+            sum += item;
+            sumArr.push(item);
+          }
+        });
+
+        let min = Math.min(...sumArr);
+
+        return (answer = `${sum}\n${min}`);
+      }
+
+      let arr = [12, 77, 38, 41, 53, 92, 85];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

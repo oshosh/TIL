@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(a, b, c) {
+        let answer;
+        let arr = [a, b, c];
+        let max = Math.max.apply(null, arr);
+
+        let data = arr.filter((v) => v !== max);
+
+        if (max < data[0] + data[1]) {
+          if (data[0] > max - data[1]) {
+            if (data[1] > max - data[0]) {
+              return (answer = "yes");
+            } else {
+              return (answer = "no");
+            }
+          } else {
+            return (answer = "no");
+          }
+        } else {
+          return (answer = "no");
+        }
+      }
+
+      console.log(solution(13, 33, 20));
+    </script>
+  </body>
+</html>

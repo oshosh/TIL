@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(a, b, c) {
+        let answer = Number.MIN_SAFE_INTEGER;
+        let arr = [a, b, c];
+
+        let temp = 0;
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] > arr[i + 1]) {
+            temp = arr[i];
+            arr[i] = arr[i + 1];
+            arr[i + 1] = temp;
+          }
+        }
+        answer = arr[0];
+        return answer;
+      }
+
+      function solution2(a, b, c) {
+        let answer = Number.MIN_SAFE_INTEGER;
+        let arr = [a, b, c];
+
+        return (answer = Math.min.apply(null, arr));
+      }
+
+      function solution3(a, b, c) {
+        let answer;
+        if (a < b) answer = a;
+        else answer = b;
+
+        if (answer > c) answer = c;
+
+        return answer;
+      }
+
+      console.log(solution(6, 5, 11));
+      console.log(solution2(6, 5, 11));
+      console.log(solution3(6, 5, 11));
+    </script>
+  </body>
+</html>

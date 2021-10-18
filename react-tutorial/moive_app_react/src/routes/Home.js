@@ -79,6 +79,7 @@ const mapStateToProps = state => {
     }
 }
 const mapDispatchToProps = (dispatch) => {
+    // 0번 실행 dispatch 정보 들고오기
     return dispatch({ type: SEARCH });
 }
 

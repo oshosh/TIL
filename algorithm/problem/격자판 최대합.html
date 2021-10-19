@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let sum = (sum2 = sum3 = sum4 = 0);
+
+        console.log(arr);
+        let newArr = Array.from({ length: 5 }, () => 0);
+        let newArr2 = Array.from({ length: 5 }, () => 0);
+        let newArr3 = [];
+
+        // 가로, 세로 총합
+        for (let i = 0; i < arr.length; i++) {
+          for (let j = 0; j < arr.length; j++) {
+            sum += arr[i][j];
+            sum2 += arr[j][i];
+
+            if (j === 4) {
+              newArr[i] = sum; // 가로
+              newArr2[i] = sum2; // 세로
+
+              sum = 0;
+              sum2 = 0;
+            }
+          }
+          sum3 += arr[i][i]; // 왼쪽 대각선
+          sum4 += arr[i][arr.length - 1 - i]; // 오른쪽 대각선
+
+          if (i === 4) {
+            newArr3.push(sum3);
+            newArr3.push(sum4);
+          }
+        }
+        newArr3 = [...newArr3, ...newArr, ...newArr2];
+
+        let answer = Math.max(...newArr3);
+        debugger;
+        return answer;
+      }
+      let arr = [
+        [10, 13, 10, 12, 15],
+        [12, 39, 30, 23, 11],
+        [11, 25, 50, 53, 15],
+        [19, 27, 29, 37, 27],
+        [19, 13, 30, 13, 19],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

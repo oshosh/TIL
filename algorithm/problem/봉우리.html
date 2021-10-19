@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(array) {
+        let max = Number.MIN_SAFE_INTEGER;
+
+        let newArr = Array.from({ length: 5 }, () => Array(5).fill(0));
+        let center = (left = up = down = right = 0);
+
+        for (let i = 0; i < array.length; i++) {
+          for (let j = 0; j < array.length; j++) {
+            center = array[i][j] ? array[i][j] : 0; // 기준
+            left = array[i][j - 1] ? array[i][j - 1] : 0; // 왼쪽
+            up = array[i - 1] ? array[i - 1][j] : 0; // 위
+            down = array[i + 1] ? array[i + 1][j] : 0; // 아래
+            right = array[j + 1] ? array[i][j + 1] : 0; // 오른쪽
+
+            max = Math.max(0, center, left, up, down, right);
+
+            if (currentLeft || currentUp || currentDown || currentRight) {
+              array[i][j] = 0;
+            } else {
+              if (center === max) {
+                newArr[i][j] = { value: max, key: true };
+
+                array[i][j - 1] ? (array[i][j - 1] = 0) : null;
+                array[i - 1] ? (array[i - 1][j] = 0) : null;
+                array[i + 1] ? (array[i + 1][j] = 0) : null;
+                array[j + 1] ? (array[i][j + 1] = 0) : null;
+              } else if (left === max) {
+                newArr[i][j - 1] = { value: max, key: true };
+              } else if (up === max) {
+                newArr[i - 1][j] = { value: max, key: true };
+              } else if (down === max) {
+                newArr[i + 1][j] = { value: max, key: true };
+              } else {
+                newArr[i][j + 1] = { value: max, key: true };
+              }
+            }
+          }
+        }
+        let answer = 0;
+        let data = array
+          .map((v) => {
+            let filterData = v.filter((item) => {
+              return item !== 0;
+            }).length;
+            return filterData;
+          })
+          .forEach((v) => (answer += v));
+
+        return answer;
+      }
+
+      function solution2(arr) {
+        let answer = 0;
+        let n = arr.length;
+
+        // 위,오른쪽, 아래, 왼쪽
+        let dx = [-1, 0, 1, 0];
+        let dy = [0, 1, 0, -1];
+
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
+            let flag = 1;
+            for (let k = 0; k < n; k++) {
+              let zx = i + dx[k];
+              let zy = j + dy[k];
+
+              if (
+                zx >= 0 &&
+                zx < n &&
+                zy >= 0 &&
+                zy < n &&
+                arr[zx][zy] >= arr[i][j]
+              ) {
+                flag = 0;
+                break;
+              }
+            }
+            if (flag) answer++;
+          }
+        }
+        return answer;
+      }
+
+      function solution3(arr) {
+        let answer = 0;
+        let n = arr.length;
+        let flag = true;
+
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
+            let currentLeft = array[i][j - 1] ? array[i][j - 1] : null;
+            let currentUp = array[i - 1] ? array[i - 1][j] : null;
+            let currentDown = array[i + 1] ? array[i + 1][j] : null;
+            let currentRight = array[j + 1] ? array[i][j + 1] : null;
+
+            if (currentLeft || currentUp || currentDown || currentRight) {
+              if (currentLeft >= arr[i][j]) {
+                flag = false;
+              } else if (currentUp >= arr[i][j]) {
+                flag = false;
+              } else if (currentDown >= arr[i][j]) {
+                flag = false;
+              } else if (currentRight >= arr[i][j]) {
+                flag = false;
+              } else {
+                flag = true;
+                answer++;
+              }
+            }
+          }
+        }
+        debugger;
+        return answer;
+      }
+
+      // let array = [
+      //   [1, 3, 7, 1, 3],
+      //   [6, 7, 9, 6, 1],
+      //   [7, 6, 1, 3, 4],
+      //   [2, 4, 55, 4, 1],
+      //   [7, 7, 1, 5, 2],
+      // ];
+
+      let array = [
+        [5, 3, 7, 2, 3],
+        [3, 7, 1, 6, 1],
+        [7, 2, 5, 3, 4],
+        [4, 3, 6, 4, 1],
+        [8, 7, 3, 5, 2],
+      ];
+
+      console.log(solution3(array));
+    </script>
+  </body>
+</html>

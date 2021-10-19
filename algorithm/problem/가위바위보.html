@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function role(person1, person2) {
+        let winner = "";
+
+        if (person1 === person2) {
+          winner = "D";
+        } else if (person1 < person2) {
+          winner = "B";
+        } else {
+          winner = "A";
+        }
+
+        if (person1 === 1 && person2 === 3) {
+          winner = "A";
+        } else if (person1 === 3 && person2 === 1) {
+          winner = "B";
+        }
+        return winner;
+      }
+
+      function solution(a, b) {
+        let answer = "";
+
+        for (let i = 0; i < 5; i++) {
+          if (i !== 0) {
+            answer += `${"\n" + role(a[i], b[i])}`;
+          } else {
+            answer += role(a[i], b[i]);
+          }
+        }
+        return answer;
+      }
+
+      function solution2(a, b) {
+        let answer = "";
+        for (let i = 0; i < a.length; i++) {
+          if (a[i] === b[i]) answer += "D";
+          else if (a[i] === 1 && b[i] === 3) answer += "A";
+          else if (a[i] === 2 && b[i] === 1) answer += "A";
+          else if (a[i] === 3 && b[i] === 2) answer += "A";
+          else answer += "B";
+        }
+        return answer;
+      }
+
+      const A = [2, 3, 3, 1, 3];
+      const B = [1, 1, 2, 2, 3];
+      console.log(solution(A, B));
+      console.log(solution2(A, B));
+    </script>
+  </body>
+</html>

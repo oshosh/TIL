@@ -26,7 +26,70 @@
       }
 
       let arr = ["good", "time", "good", "time", "student"];
-      console.log(solution2(arr));
+      let numberArr = [10, 20, 30, 40, 50];
+
+      function DataUtil(data) {
+        if (!new.target) {
+          return new DataUtil(data);
+        }
+        this.data = data;
+
+        DataUtil.prototype.customForEach = function (predicate, thisArg) {
+          for (let i = 0; i < data.length; i++) {
+            predicate(data[i], i);
+          }
+        };
+
+        DataUtil.prototype.customMapFunc = function (predicate, thisArg) {
+          let list = [];
+          for (let i = 0; i < data.length; i++) {
+            list.push(predicate(data[i], i));
+          }
+          return list;
+        };
+
+        DataUtil.prototype.customFilter = function (predicate, thisArg) {
+          let list = [];
+          let bool = true;
+
+          for (let i = 0; i < data.length; i++) {
+            bool = predicate(data[i], i);
+            if (bool) list.push(data[i]);
+          }
+          return list;
+        };
+
+        DataUtil.prototype.customReduce = function (predicate, init) {
+          let result = init;
+
+          for (let i = 0; i < data.length; i++) {
+            let num = predicate(result, data[i]);
+            result = num;
+          }
+          return result;
+        };
+      }
+
+      let reduceData = DataUtil(numberArr).customReduce(function (acc, cur) {
+        return acc + cur;
+      }, 0);
+
+      let filterData = DataUtil(arr).customFilter(function (v, i) {
+        return v.length !== 4;
+      });
+
+      let mapData = DataUtil(arr).customMapFunc(function (v, i) {
+        return v + " hi " + String(i);
+      });
+
+      DataUtil(arr).customForEach(function (v, i) {
+        console.log(v, i);
+      });
+
+      console.log(reduceData);
+      console.log(filterData);
+      console.log(mapData);
+      // console.log(solution2(arr));
     </script>
   </body>
 </html>

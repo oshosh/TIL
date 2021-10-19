@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let max = Number.MIN_SAFE_INTEGER;
+        let rank = 1;
+        let answer = [];
+
+        for (let i = 0; i < arr.length; i++) {
+          for (let j = 0; j < arr.length; j++) {
+            if (arr[j] !== arr[i]) {
+              if (arr[i] < arr[j]) {
+                rank += 1;
+                answer[i] = rank;
+                if (j === arr.length - 1) {
+                  rank = 1;
+                }
+              } else {
+                rank = 1;
+                if (!answer[i]) {
+                  answer[i] = rank;
+                }
+              }
+            }
+          }
+        }
+        return answer;
+      }
+
+      function solution2(arr) {
+        let max = Number.MIN_SAFE_INTEGER;
+        let rank = 1;
+        let answer = [];
+
+        let data = arr.map((i) => {
+          let filterRank =
+            arr.filter((j) => {
+              return i < j;
+            }).length + 1;
+          return filterRank;
+        });
+      }
+
+      function solution3(arr) {
+        let n = arr.length;
+        let answer = Array.from({ length: n }, () => 1);
+
+        let em = Array.from({ length: 20 }, () => Array(10).fill(0));
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
+            if (arr[j] > arr[i]) answer[i]++;
+          }
+        }
+        return answer;
+      }
+
+      // let arr = [87, 89, 92, 100, 76];
+      let arr = [87, 100, 89, 11, 76];
+      // 3 1 2 5 4
+      console.log(solution3(arr));
+    </script>
+  </body>
+</html>

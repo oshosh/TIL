@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(str) {
+        return Number(str.replace(/[a-z,A-z]/g, ""));
+      }
+
+      // isNaN => 숫자가 아니냐 ? (숫자면 false, 문자 혹은 그외면 true)
+      function solution2(str) {
+        let answer = "";
+        for (let x of str) {
+          // 0 * 10 + 2
+          // 2 * 10  + 0
+          // 20 * 10 + 8
+          // if (!isNaN(x)) answer = answer * 10 + Number(x);
+          if (!isNaN(x)) answer += x;
+        }
+        return Number(answer);
+      }
+      console.log(solution2("g0en2T0s8eSoft"));
+    </script>
+  </body>
+</html>

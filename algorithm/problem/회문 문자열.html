@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(str) {
+        let answer;
+        let n = str.length;
+        let isHalf = n % 2 === 0;
+        let strArr = str.split("");
+        if (isHalf) {
+          let half = n / 2;
+          let halfArr = [];
+          let remainArr = [];
+
+          for (let i = 0; i < half; i++) {
+            halfArr.push(strArr[i].toUpperCase());
+          }
+
+          for (let i = n - 1; half <= i; i--) {
+            remainArr.push(strArr[i].toUpperCase());
+          }
+          // for (let i = half; i < n; i++) {
+          //   remainArr.push(strArr[i].toUpperCase());
+          // }
+
+          // let reverse = remainArr.reverse();
+
+          if (JSON.stringify(halfArr) === JSON.stringify(remainArr)) {
+            return (answer = "YES");
+          } else {
+            return (answer = "NO");
+          }
+        } else {
+          return (answer = "NO");
+        }
+      }
+
+      function solution2(str) {
+        let answer = "YES";
+        let n = str.length;
+        let halfLength = parseInt(n / 2, 10);
+        str = str.toUpperCase();
+
+        for (let i = 0; i < halfLength; i++) {
+          if (str[i] !== str[n - 1 - i]) {
+            return (answer = "NO");
+            break;
+          }
+        }
+        return answer;
+      }
+
+      function solution3(str) {
+        let answer = "YES";
+        let n = str.length;
+        let halfLength = parseInt(n / 2, 10);
+
+        str = str.toUpperCase();
+        let compareStr = str.toUpperCase().split("").reverse().join("");
+
+        if (str !== compareStr) return (answer = "NO");
+
+        return answer;
+      }
+
+      function solution4(str) {
+        let answer = "YES";
+        let n = str.length;
+        let halfLength = parseInt(n / 2, 10);
+        str = str.toUpperCase().split("");
+        let compareStr = str.reverse();
+
+        if (JSON.stringify(str) !== JSON.stringify(compareStr))
+          return (answer = "NO");
+
+        return answer;
+      }
+
+      console.log(solution3("goabobaoG"));
+    </script>
+  </body>
+</html>

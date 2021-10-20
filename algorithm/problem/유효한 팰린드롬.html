@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function regExp(str) {
+        var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
+        if (reg.test(str)) {
+          return str.replace(reg, "");
+        } else {
+          return str;
+        }
+      }
+
+      function solution(str) {
+        let answer = "YES";
+        let newStr = regExp(str).toLowerCase().split(" ");
+        let n = parseInt(newStr.length / 2, 10);
+
+        for (let i = 0; i < n; i++) {
+          if (
+            newStr[i] !==
+            newStr[newStr.length - 1 - i].split("").reverse().join("")
+          )
+            return "NO";
+        }
+
+        return answer;
+      }
+
+      function solution2(str) {
+        let answer = "yes";
+        str = str.toLowerCase().replace(/[^a-z]/g, "");
+        let revserseStr = str.split("").reverse().join("");
+
+        if (str !== revserseStr) return (answer = "NO");
+        return answer;
+      }
+
+      console.log(solution2("found7, time: study; Yduts; emit, 7Dnuof"));
+    </script>
+  </body>
+</html>

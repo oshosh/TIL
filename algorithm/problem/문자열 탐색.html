@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = s.split("");
+        let n = s.length;
+        let cnt = 1;
+        let currentX = "";
+
+        for (let i = 0; i < n; i++) {
+          console.log(answer[i]);
+          if (answer[i] === answer[i + 1]) {
+            cnt++;
+          } else {
+            if (cnt !== 1) {
+              answer[i] = String(cnt);
+              cnt = 1;
+            }
+          }
+        }
+
+        let arr = [];
+        answer.forEach((item, i) => {
+          if (!arr.includes(item)) {
+            arr.push(item);
+          }
+        });
+        answer = arr;
+        return answer.join("");
+      }
+
+      function solution2(s) {
+        let answer = "";
+        let cnt = 1;
+        s = s + " ";
+
+        // KKHSSSSSSSE" " 공백을 하나 더 넣었기 때문에
+        // E 까지 for문이 돌지만 if문에서 공백까지도 조회가 가능해야한다 안그럼 다음값이 undefined 값을 가짐
+        for (let i = 0; i < s.length - 1; i++) {
+          if (s[i] === s[i + 1]) cnt++;
+          else {
+            answer += s[i];
+            if (cnt > 1) answer += String(cnt);
+            cnt = 1;
+          }
+        }
+      }
+
+      console.log(solution2("KKHSSSSSSSE"));
+    </script>
+  </body>
+</html>

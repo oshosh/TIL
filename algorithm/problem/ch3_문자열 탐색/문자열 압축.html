@@ -8,6 +8,47 @@
   </head>
   <body>
     <script>
+      var obj = {
+        string: "zero",
+        yell: function () {
+          alert(this.string);
+        },
+      };
+      var obj2 = {
+        string: "what?",
+      };
+      var yell2 = obj.yell.bind(obj2);
+      yell2(); // 'what?'
+
+      function Product(name, price) {
+        console.log(this);
+        this.name = name;
+        this.price = price;
+      }
+
+      function Food(name, price) {
+        this.foodName = "햄버거";
+        Product.call(this, name, price);
+        this.category = "food";
+      }
+
+      var cheese = new Food("feta", 5);
+
+      class Product1 {
+        constructor(name, price) {
+          console.log(this);
+          this.name = name;
+          this.price = price;
+        }
+      }
+
+      class Food1 extends Product1 {
+        constructor(name, price) {
+          super(name, price);
+          this.category = "food";
+        }
+      }
+      let cheese1 = new Food1("feta", 5);
       function solution(s) {
         let answer = s.split("");
         let n = s.length;

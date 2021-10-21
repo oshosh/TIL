@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = [];
+        let flag = false;
+
+        for (let x of arr) {
+          let reverseNumber = 0;
+          String(x)
+            .split("")
+            .reverse()
+            .reduce((acc, cur) => (reverseNumber += cur), "");
+
+          reverseNumber = parseInt(reverseNumber, 10);
+
+          for (let i = 2; i <= parseInt(reverseNumber / 2); i++) {
+            // 2부터 자기자신 제외하고 0으로 떨어지면 소수가 아님
+            if (reverseNumber % i === 0) {
+              flag = true;
+            }
+          }
+
+          if (!flag && reverseNumber !== 1) {
+            answer.push(reverseNumber);
+          } else {
+            // 소수이면 flag 초기화
+            flag = false;
+          }
+        }
+        return answer;
+      }
+
+      function checkData(number) {
+        if (number === 1) return false; // 저장도 안한다.
+        for (let i = 2; i <= parseInt(number / 2, 10); i++) {
+          if (number % i === 0) {
+            return false; // 소수
+          }
+        }
+        return true;
+      }
+      function solution2(arr) {
+        let answer = [];
+
+        for (let x of arr) {
+          let reverseNumber = 0;
+          let tmp = 0;
+
+          while (x) {
+            tmp = x % 10;
+            x = parseInt(x / 10, 10);
+            reverseNumber = reverseNumber * 10 + tmp;
+          }
+
+          if (checkData(reverseNumber)) answer.push(reverseNumber);
+        }
+        return answer;
+      }
+
+      let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+      console.log(solution2(arr));
+    </script>
+  </body>
+</html>

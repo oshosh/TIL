@@ -9,11 +9,51 @@
   <body>
     <script>
       function solution(arr) {
-        let answer = [];
-        return answer.length;
+        let answer = 0;
+        let sum = 0;
+        let max = Number.MIN_SAFE_INTEGER;
+
+        for (let x of arr) {
+          sum = String(x)
+            .split("")
+            .reduce((acc, cur) => {
+              return acc + Number(cur);
+            }, 0);
+          if (max <= sum) {
+            max = sum;
+            if (answer < x) {
+              answer = x;
+            }
+          }
+        }
+        return answer;
       }
-      let arr = [130, 135, 148, 140, 145, 150, 150, 153];
-      console.log(solution(arr));
+
+      function solution2(arr) {
+        let answer = 0;
+        let max = Number.MIN_SAFE_INTEGER;
+
+        for (let x of arr) {
+          let sum = 0,
+            tmp = x;
+
+          do {
+            sum += tmp % 10;
+            tmp = parseInt(tmp / 10, 10);
+          } while (tmp / 10 !== 0);
+
+          if (max <= sum) {
+            max = sum;
+            if (answer < x) {
+              answer = x;
+            }
+          }
+        }
+        return answer;
+      }
+
+      let arr = [128, 460, 603, 40, 521, 137, 123];
+      console.log(solution2(arr));
     </script>
   </body>
 </html>

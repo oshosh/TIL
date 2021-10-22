@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = [];
+        let key = 0;
+        let keyDistance = 0;
+
+        let arr2 = [];
+        let sum = 0;
+        let currentExpect = [];
+        let copycurrentExpect = [];
+
+        for (let x of arr[0]) {
+          arr.forEach((v, i) => {
+            v.forEach((k, j) => {
+              if (key !== x) {
+                key = x; // 현재 arr의 v의 배열의 첫번째 키
+              }
+
+              keyDistance = v.findIndex((v) => v === key); // 현재 키의 위치를 찾아라
+              if (key !== k && keyDistance !== 0) {
+                if (!arr2.includes(k)) {
+                  if (currentExpect.length > 0) {
+                    arr2 = arr2.filter((item) => !currentExpect.includes(item));
+                    if (!currentExpect.includes(k)) {
+                      arr2.push(k);
+                    }
+                  } else {
+                    arr2.push(k);
+                  }
+                }
+              } else {
+                if (key === k && keyDistance !== 0) {
+                  // 제외 항목 저장
+                  // keyDistance가 1인 경우 아래와 같이 slice(0, keyDistance)하면 [1,2,3] => [1]
+                  // 이거에 반대는 slice(1)해주면 자기 자신 제외 이후 나온다. [2,3]
+                  let data = v.slice(0, keyDistance);
+
+                  // 기존배열에 data를 넣는다.
+                  currentExpect = [...currentExpect, ...data];
+
+                  // 넣어준 배열 기준으로 중복되는 제외 값만 제거 한다.
+                  currentExpect = currentExpect.filter(
+                    (v, idx) => currentExpect.indexOf(v) === idx
+                  );
+
+                  // 기본 배열에서 slice 된 제외 항목 제거한다.
+                  // arr2을 기준으로 하여 차집합이 일어나며 arr2 중에서 제외항목만 없앤다.
+                  arr2 = arr2.filter((item) => !currentExpect.includes(item));
+                }
+              }
+            });
+            console.log(arr2);
+
+            if (i === arr.length - 1) {
+              currentExpect = [];
+              sum += arr2.length;
+              arr2 = [];
+            }
+          });
+        }
+
+        return (answer = sum);
+      }
+
+      // let arr = [
+      //   [19, 15, 4, 17, 12, 18, 6, 3, 11, 14, 1, 8, 13, 9, 2, 20, 5, 16, 10, 7],
+      //   [5, 20, 18, 17, 14, 11, 19, 3, 10, 16, 6, 8, 13, 9, 2, 12, 4, 7, 1, 15],
+      // ];
+      let arr = [
+        [1, 2, 3, 4, 5],
+        [5, 4, 3, 2, 1],
+      ];
+      // let arr = [
+      //   [3, 4, 1, 2],
+      //   [4, 3, 2, 1],
+      //   [3, 1, 4, 2],
+      // ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

@@ -15,8 +15,7 @@
 
         let arr2 = [];
         let sum = 0;
-        let currentExpect = [];
-        let copycurrentExpect = [];
+        let except = [];
 
         for (let x of arr[0]) {
           arr.forEach((v, i) => {
@@ -28,9 +27,9 @@
               keyDistance = v.findIndex((v) => v === key); // 현재 키의 위치를 찾아라
               if (key !== k && keyDistance !== 0) {
                 if (!arr2.includes(k)) {
-                  if (currentExpect.length > 0) {
-                    arr2 = arr2.filter((item) => !currentExpect.includes(item));
-                    if (!currentExpect.includes(k)) {
+                  if (except.length > 0) {
+                    arr2 = arr2.filter((item) => !except.includes(item));
+                    if (!except.includes(k)) {
                       arr2.push(k);
                     }
                   } else {
@@ -45,23 +44,21 @@
                   let data = v.slice(0, keyDistance);
 
                   // 기존배열에 data를 넣는다.
-                  currentExpect = [...currentExpect, ...data];
+                  except = [...except, ...data];
 
                   // 넣어준 배열 기준으로 중복되는 제외 값만 제거 한다.
-                  currentExpect = currentExpect.filter(
-                    (v, idx) => currentExpect.indexOf(v) === idx
-                  );
+                  except = except.filter((v, idx) => except.indexOf(v) === idx);
 
                   // 기본 배열에서 slice 된 제외 항목 제거한다.
                   // arr2을 기준으로 하여 차집합이 일어나며 arr2 중에서 제외항목만 없앤다.
-                  arr2 = arr2.filter((item) => !currentExpect.includes(item));
+                  arr2 = arr2.filter((item) => !except.includes(item));
                 }
               }
             });
             console.log(arr2);
 
             if (i === arr.length - 1) {
-              currentExpect = [];
+              except = [];
               sum += arr2.length;
               arr2 = [];
             }

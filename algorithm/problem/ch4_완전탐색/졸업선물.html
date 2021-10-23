@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(num, arr) {
+        let answer = 0;
+        let n = arr.length;
+        let tot = num;
+        let copyArr = [...arr];
+
+        // 합산 배열 생성
+        let sumArr = [];
+        let discountSumArr = [];
+
+        copyArr.forEach((v) => {
+          sumArr.push(v.reduce((acc, cur) => acc + cur, 0));
+          v[0] = parseInt(v[0] / 2, 10);
+          discountSumArr.push(v.reduce((acc, cur) => acc + cur, 0));
+        });
+
+        // 작은 순으로 소트
+        let sortSumArr = sumArr.sort((a, b) => a - b);
+        let sortDisCountSumArr = discountSumArr.sort((a, b) => a - b);
+        let currentDisCountPrice = 0;
+
+        // 이 로직은 0이 되거나 마이너스 일경우 종료다.
+        // 인원수 만큼 돌린다.
+        for (let i = 0; i < n; i++) {
+          // 초기 금액 - 최소 금액을 빼준다.
+          // 어차피 위에서 sort() 시켰기때문에 최소금액보다 초기금액이 작을 수 없다.
+
+          tot = tot - sortSumArr[i];
+
+          // i+1가 undefined가 나올 수 있으나 tot이 - 되기 때문에 상관없음
+          // 그리고 다음 할인 금액을 탐색을 해놓고 합산금액 영역에서 비교 해줘야함
+          currentDisCountPrice = sortDisCountSumArr[i + 1];
+          answer++;
+
+          if (tot < 0) {
+            answer--;
+            break;
+          }
+
+          // 여기는 합산 금액 영역
+          // 할인 기준으로 합산 금액을 찾는데 합산+ 할인 === 나머지와 같다면
+          // 나 자신을 최대로 사용 할 수있는 할인금액으로 측정시킨다.
+          for (let j = 0; j < n; j++) {
+            // 내 자신은 찾지 않는다.
+            if (i + 1 !== j) {
+              if (tot === sortSumArr[j] + currentDisCountPrice) {
+                tot = tot - currentDisCountPrice;
+                answer++;
+              } else if (tot === currentDisCountPrice) {
+                // tot가 다음 할인금액이 같아지는 경우
+                answer++;
+                break;
+              }
+            }
+          }
+        }
+
+        return answer;
+      }
+
+      function solution3(num, arr) {
+        let n = arr.length;
+        let compareIndexArr = [];
+
+        for (let i = 0; i < n; i++) {
+          let tot = num;
+          let count = 0;
+          arr[i][0] = arr[i][0] * 0.5;
+
+          let sortArr = arr
+            .map((v) => v.reduce((acc, cur) => acc + cur, 0))
+            .sort((a, b) => a - b);
+
+          for (let j = 0; j < n; j++) {
+            tot = tot - sortArr[j];
+
+            if (tot < 0) {
+              break;
+            } else {
+              count++;
+            }
+          }
+          compareIndexArr.push(count);
+
+          arr[i][0] = arr[i][0] * 2;
+        }
+        return Math.max(...compareIndexArr);
+      }
+
+      // 답 5
+      // let s = 41;
+      // let arr = [
+      //   [8, 6],
+      //   [2, 2],
+      //   [4, 3],
+      //   [4, 5],
+      //   [12, 1],
+      // ];
+
+      // 답 4
+      // let s = 28;
+      // let arr = [
+      //   [6, 6],
+      //   [2, 2],
+      //   [4, 3],
+      //   [4, 5],
+      //   [10, 3],
+      // ];
+
+      // 답 2
+      // let s = 596;
+      // let arr = [
+      //   [6, 331],
+      //   [4, 251],
+      //   [8, 675],
+      //   [5, 214],
+      //   [10, 735],
+      //   [5, 996],
+      //   [9, 609],
+      //   [9, 371],
+      //   [8, 377],
+      //   [5, 707],
+      //   [7, 907],
+      //   [6, 433],
+      //   [9, 737],
+      //   [8, 796],
+      //   [4, 265],
+      //   [3, 484],
+      //   [8, 488],
+      //   [8, 191],
+      //   [9, 232],
+      //   [4, 195],
+      // ];
+
+      // // 답 4
+      let s = 27;
+      let arr = [
+        [8, 6],
+        [2, 2],
+        [4, 3],
+        [4, 5],
+        [6, 4],
+      ];
+      console.log(solution3(s, arr));
+    </script>
+  </body>
+</html>

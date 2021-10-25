@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function so(arr, s) {
+        let answer = 0;
+        let rt = 0;
+        let lt = 0;
+        let accSum = 0;
+        let n = arr.length;
+
+        for (let rt = 0; rt < n; rt++) {
+          accSum += arr[rt];
+          if (s === accSum) answer++;
+          // for문을 돌다가 accSum이 커졌다면...
+          while (accSum >= s) {
+            accSum -= arr[lt++]; // 기존 lt 값을 빼주고 증가 시킨다.
+            if (s === accSum) answer++;
+          }
+        }
+        return answer;
+      }
+      console.log(so([1, 2, 1, 3, 1, 1, 1, 2], 6));
+
+      function solution(arr, s) {
+        let answer = 0;
+        let n = arr.length;
+
+        let start = (end = 0);
+        let currentSum = 0;
+        let currentEnd = 0;
+
+        while (start <= n - 1) {
+          if (start === end) {
+            currentSum += arr[start];
+            start++;
+            currentSum += arr[start];
+            currentEnd = arr[end];
+          } else if (currentSum < 6) {
+            start++;
+            currentSum += arr[start];
+            currentEnd = arr[end];
+          } else if (currentSum > 6) {
+            currentSum -= arr[end];
+            end++;
+            currentEnd = arr[end];
+          } else if (currentSum === 6) {
+            answer++;
+            currentSum -= currentEnd;
+            end++;
+          }
+        }
+        return answer;
+      }
+      console.log(solution([1, 2, 1, 3, 1, 1, 1, 2], 6));
+
+      function solution3(m, arr) {
+        let answer = 0,
+          lt = 0,
+          sum = 0;
+        for (let rt = 0; rt < arr.length; rt++) {
+          sum += arr[rt];
+          if (sum === m) answer++;
+          while (sum >= m) {
+            sum -= arr[lt++];
+            if (sum === m) answer++;
+          }
+        }
+        return answer;
+      }
+
+      let a = [1, 2, 1, 3, 1, 1, 1, 2];
+      console.log(solution3(6, a));
+    </script>
+  </body>
+</html>

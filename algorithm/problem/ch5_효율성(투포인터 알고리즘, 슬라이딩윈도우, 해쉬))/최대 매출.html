@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr, s) {
+        let answer = 0;
+        let n = arr.length - s;
+
+        for (let i = 0; i < n; i++) {
+          let currentSum = 0;
+          for (let j = i + 1; j < i + s; j++) {
+            currentSum += arr[j];
+          }
+          currentSum += arr[i];
+          answer = Math.max(answer, currentSum);
+        }
+        return answer;
+      }
+
+      function solution2(arr, s) {
+        let answer = 0;
+        let n = arr.length - s;
+
+        let currentSum = 0;
+        for (let i = 0; i < n; i++) {
+          currentSum += arr[i];
+
+          if (i >= 2) {
+            answer = Math.max(answer, currentSum);
+            currentSum -= arr[i - 2];
+          }
+        }
+
+        return answer;
+      }
+
+      function solution3(arr, s) {
+        let answer = 0;
+        let sum = 0;
+        for (let i = 0; i < s; i++) sum += arr[i];
+
+        for (let i = s; i < arr.length; i++) {
+          sum += arr[i] - arr[i - s];
+          answer = Math.max(answer, sum);
+        }
+      }
+
+      let arr = [12, 15, 11, 20, 25, 10, 20, 19, 13, 15];
+      let s = 3;
+      console.log(solution2(arr, s));
+    </script>
+  </body>
+</html>

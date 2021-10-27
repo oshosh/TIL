@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(s1, s2) {
+        let answer = 0;
+
+        let map = new Map();
+        let map2 = new Map();
+
+        for (let x of s1) {
+          if (map.has(x)) {
+            map.set(x, map.get(x) + 1);
+          } else {
+            map.set(x, 1);
+          }
+        }
+
+        for (let x of s2) {
+          if (map2.has(x)) {
+            map2.set(x, map2.get(x) + 1);
+          } else {
+            map2.set(x, 1);
+          }
+        }
+
+        for (let [key, value] of map) {
+          for (let [key2, value2] of map2) {
+            if (key === key2 && value === value2) {
+              answer = "YES";
+            } else {
+              answer = "NO";
+            }
+          }
+        }
+
+        return answer;
+      }
+
+      let s1 = "abaCC";
+      let s2 = "Caaab";
+      // let s1 = "AbaAeCe";
+      // let s2 = "baeeACA";
+      console.log(solution(s1, s2));
+    </script>
+  </body>
+</html>

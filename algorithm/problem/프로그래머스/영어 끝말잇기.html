@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, words) {
+        let answer = "";
+        let next = words.length % n;
+        if (next === 0) next = n;
+
+        for (let i = 0; i < words.length; i++) {
+          let nextWord =
+            words[i + 1] === undefined
+              ? words[i][words[i].length - 1]
+              : words[i + 1][0];
+          if (words.indexOf(words[i]) !== i) {
+            answer = i + 1;
+            break;
+          } else if (words[i][words[i].length - 1] !== nextWord) {
+            answer = i + 2;
+            break;
+          }
+        }
+        // 누구 차례 / 몇번째
+        // answer % n 이 0 이면 n를 쓰고
+        return answer ? [answer % n || n, Math.ceil(answer / n)] : [0, 0];
+      }
+      // console.log(
+      //   solution2(3, [
+      //     "hello",
+      //     "observe",
+      //     "effect",
+      //     "take",
+      //     "either",
+      //     "recognize",
+      //     "encourage",
+      //     "ensure",
+      //     "establish",
+      //     "hang",
+      //     "gather",
+      //     "refer",
+      //     "reference",
+      //     "estimate",
+      //     "executive",
+      //   ])
+      // );
+      console.log(
+        solution(2, ["hello", "one", "even", "never", "now", "world", "draw"])
+      );
+
+      // console.log(
+      //   solution(3, [
+      //     "tank",
+      //     "kick",
+      //     "know",
+      //     "wheel",
+      //     "land",
+      //     "dream",
+      //     "mother",
+      //     "robot",
+      //     "tank",
+      //   ])
+      // );
+    </script>
+  </body>
+</html>

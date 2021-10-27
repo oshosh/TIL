@@ -43,8 +43,54 @@
         return answer;
       }
 
+      function solution(s1, s2) {
+        let answer = "YES";
+
+        let map = new Map();
+
+        for (let x of s1) {
+          if (map.has(x)) {
+            map.set(x, map.get(x) + 1);
+          } else {
+            map.set(x, 1);
+          }
+        }
+
+        for (let i = 0; i < s2.length; i++) {
+          if (map.get(s2[i])) {
+            map.set(s2[i], map.get(s2[i]) - 1);
+          } else {
+            answer = "NO";
+            break;
+          }
+        }
+
+        return answer;
+      }
+
+      function solution(s1, s2) {
+        let answer = "YES";
+
+        let map = new Map();
+
+        for (let x of s1) {
+          if (map.has(x)) {
+            map.set(x, map.get(x) + 1);
+          } else {
+            map.set(x, 1);
+          }
+        }
+
+        for (let x of s2) {
+          if (!map.has(x) || map.get(x) === 0) answer = "NO";
+          else map.set(x, map.get(x) - 1);
+        }
+
+        return answer;
+      }
+
       let s1 = "abaCC";
-      let s2 = "Caaab";
+      let s2 = "Caabb";
       // let s1 = "AbaAeCe";
       // let s2 = "baeeACA";
       console.log(solution(s1, s2));

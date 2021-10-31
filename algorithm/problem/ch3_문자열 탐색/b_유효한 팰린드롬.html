@@ -42,6 +42,25 @@
         return answer;
       }
 
+      function solution(str) {
+        let answer = "YES";
+        let newArr = str.toLowerCase().split(" ");
+        let n = newArr.length;
+
+        let reg = /[^a-z]/gi;
+        for (let i = 0; i < n / 2; i++) {
+          newArr[i] = newArr[i].replace(reg, "");
+          newArr[n - 1 - i] = newArr[n - 1 - i]
+            .split("")
+            .reverse()
+            .join("")
+            .replace(reg, "");
+          if (newArr[i] !== newArr[n - 1 - i]) answer = "NO";
+        }
+
+        return answer;
+      }
+
       console.log(solution2("found7, time: study; Yduts; emit, 7Dnuof"));
     </script>
   </body>

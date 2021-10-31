@@ -65,6 +65,46 @@
         return answer;
       }
 
+      function solution(s, t) {
+        let answer = "";
+        let arr = [];
+        let index = 0;
+
+        // 왼쪽 순회
+        for (let i = 0; i < s.length; i++) {
+          for (let j = index; j < s.length; j++) {
+            if (s[i] === "e") {
+              index = i;
+              arr.push(0);
+              break;
+            }
+
+            if (i !== j && s[j] === "e") {
+              arr.push(Math.abs(j - i));
+              break;
+            }
+          }
+        }
+        index = s.length - 1;
+        // 오른쪽 순회
+        for (let i = s.length - 1; i > 0; i--) {
+          for (let j = index; j < s.length; j++) {
+            if (s[i] === "e") {
+              index = i;
+              break;
+            }
+
+            if (i !== j && s[j] === "e") {
+              if (arr[i] > Math.abs(j - i)) {
+                arr[i] = Math.abs(j - i);
+              }
+              break;
+            }
+          }
+        }
+        return answer;
+      }
+
       console.log(solution("teachermode", "e"));
     </script>
   </body>

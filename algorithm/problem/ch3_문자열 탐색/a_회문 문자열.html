@@ -82,6 +82,20 @@
         return answer;
       }
 
+      function solution(str) {
+        let answer = "YES";
+        let n = str.length;
+
+        str = str.toUpperCase();
+        for (let i = 0; i < n / 2; i++) {
+          if (str[i] !== str[n - 1 - i]) answer = "NO";
+          // 문자열이 홀수이면 NO
+          if (n - 1 - i === i) answer = "NO";
+        }
+
+        return answer;
+      }
+
       console.log(solution3("goabobaoG"));
     </script>
   </body>

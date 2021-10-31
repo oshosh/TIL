@@ -94,6 +94,55 @@
         }
       }
 
+      console.log("----------------------------------------------------");
+
+      function solution(s) {
+        let answer = "";
+        let n = s.length;
+
+        s = s + " ";
+        let count = 1;
+        for (let i = 0; i < n; i++) {
+          if (s[i] === s[i + 1]) {
+            count++;
+          } else {
+            answer += s[i];
+            if (count > 1) answer += count;
+            count = 1;
+          }
+        }
+
+        return answer;
+      }
+      // function solution(s) {
+      //   let answer = "";
+
+      //   let count = 1;
+
+      //   let str = s;
+      //   let str2 = "";
+
+      //   for (let i = 0; i < str.length; i++) {
+      //     if (i === str.length - 1) {
+      //       str2 += str[i];
+      //       break;
+      //     }
+      //     if (str[i] === str[i + 1]) {
+      //       count++;
+      //       str2 += str[i];
+      //     } else if (count !== 1) {
+      //       str2 += String(count);
+      //       count = 1;
+      //     } else {
+      //       str2 += str[i];
+      //     }
+      //   }
+      //   str2 = str2
+      //     .split("")
+      //     .filter((v, idx) => str2.split("").indexOf(v) === idx);
+      //   return str2.join("");
+      // }
+
       console.log(solution2("KKHSSSSSSSE"));
     </script>
   </body>

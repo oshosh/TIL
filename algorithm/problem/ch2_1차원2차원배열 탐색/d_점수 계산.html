@@ -23,6 +23,17 @@
         return answer;
       }
 
+      function solution2(a) {
+        let answer = (count = 0);
+
+        for (let x of a) {
+          if (x) answer += ++count;
+          else count = 0;
+        }
+
+        return answer;
+      }
+
       let arr = [1, 0, 1, 1, 1, 0, 0, 1, 1, 0];
       console.log(solution(arr));
     </script>

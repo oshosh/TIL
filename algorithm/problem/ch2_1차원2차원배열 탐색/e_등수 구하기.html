@@ -9,7 +9,6 @@
   <body>
     <script>
       function solution(arr) {
-        let max = Number.MIN_SAFE_INTEGER;
         let rank = 1;
         let answer = [];
 
@@ -35,7 +34,6 @@
       }
 
       function solution2(arr) {
-        let max = Number.MIN_SAFE_INTEGER;
         let rank = 1;
         let answer = [];
 
@@ -57,6 +55,34 @@
           for (let j = 0; j < n; j++) {
             if (arr[j] > arr[i]) answer[i]++;
           }
+        }
+        return answer;
+      }
+
+      function solution4(a) {
+        let n = a.length;
+        let acc = (count = 0);
+        let answer = [];
+        let same = false;
+
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
+            if (i !== j) {
+              if (a[i] < a[j]) {
+                count++;
+              } else if (a[i] === a[j]) {
+                same = true;
+                count++;
+              }
+            }
+          }
+          if (same) {
+            answer.push(count);
+            same = false;
+          } else {
+            answer.push(count + 1);
+          }
+          count = 0;
         }
         return answer;
       }

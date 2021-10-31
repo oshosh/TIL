@@ -122,6 +122,30 @@
         return answer;
       }
 
+      function solution(arr) {
+        let n = arr.length;
+        let answer = 0;
+        let up = (left = down = right = 0);
+        let current = 0;
+        let max = 0;
+
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
+            current = arr[i][j] ? arr[i][j] : 0;
+            up = arr[i - 1] ? arr[i - 1][j] : 0;
+            left = arr[j - 1] ? arr[i][j - 1] : 0;
+            down = arr[i + 1] ? arr[i + 1][j] : 0;
+            right = arr[j + 1] ? arr[i][j + 1] : 0;
+
+            max = Math.max(max, current, up, left, down, right);
+            if (max === current) answer++;
+            max = 0;
+            current = 0;
+          }
+        }
+        return answer;
+      }
+
       // let array = [
       //   [1, 3, 7, 1, 3],
       //   [6, 7, 9, 6, 1],

@@ -43,6 +43,30 @@
         let answer = Math.max(...newArr3);
         return answer;
       }
+
+      function solution2(arr) {
+        let n = arr.length;
+        let answer = [];
+
+        let sum = 0;
+        let sum2 = 0;
+        let sum3 = 0;
+        let sum4 = 0;
+
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
+            sum += arr[i][j]; // 가로 합계
+            sum2 += arr[j][i]; // 세로 합계
+          }
+          sum3 += arr[i][i]; // 왼쪽 대각
+          sum4 += arr[i][n - 1 - i]; // 오른쪽 대각
+          answer = Math.max(answer, sum, sum2, sum3, sum4);
+          sum = 0;
+          sum2 = 0;
+        }
+        return answer;
+      }
+
       let arr = [
         [10, 13, 10, 12, 15],
         [12, 39, 30, 23, 11],

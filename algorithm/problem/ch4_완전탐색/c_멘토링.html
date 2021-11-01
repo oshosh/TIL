@@ -68,6 +68,70 @@
         return (answer = sum);
       }
 
+      function solution(arr) {
+        let answer = 0;
+        let except = [];
+
+        let compareArr = arr[0];
+        let n = compareArr.length;
+
+        let newArr = [];
+        for (let x of compareArr) {
+          arr.forEach((v, i) => {
+            let currentIndex = v.indexOf(x);
+
+            if (currentIndex > 0) {
+              except = [...except, ...v.slice(0, currentIndex)];
+              except = except.filter((v, idx) => except.indexOf(v) === idx);
+            }
+
+            let silceData = v.slice(currentIndex + 1);
+            newArr = [...newArr, ...silceData];
+
+            if (i === arr.length - 1) {
+              let 중복제거 = newArr.filter(
+                (v, idx) => newArr.indexOf(v) === idx
+              );
+              let 예외제거 = 중복제거.filter((v, idx) => !except.includes(v));
+
+              except = [];
+              newArr = [];
+              answer += 예외제거.length;
+            }
+          });
+        }
+        return answer;
+      }
+
+      // 해설 풀이
+      function solution(arr) {
+        let answer = 0;
+        let n = arr[0].length;
+        let m = arr.length;
+
+        // 1번 학생부터 n번 학생까지
+        for (let i = 1; i <= n; i++) {
+          for (let j = 1; j <= n; j++) {
+            let cnt = 0;
+            // (i , j)비교
+            // (3, 1)일 경우 3이 = 0 등 1이 2등인경우
+            // 0 < 2 이니까 cnt를 증가
+            // cnt가 비교 배열만큼 돌았을때의 cnt와 같으면 answer 인덱스 증가
+            for (let k = 0; k < m; k++) {
+              let pi = (pj = 0);
+              for (let s = 0; s < n; s++) {
+                if (arr[k][s] === i) pi = s;
+                if (arr[k][s] === j) pj = s;
+              }
+
+              if (pi < pj) cnt++;
+            }
+            if (cnt === m) answer++;
+          }
+        }
+        return answer;
+      }
+
       // let arr = [
       //   [19, 15, 4, 17, 12, 18, 6, 3, 11, 14, 1, 8, 13, 9, 2, 20, 5, 16, 10, 7],
       //   [5, 20, 18, 17, 14, 11, 19, 3, 10, 16, 6, 8, 13, 9, 2, 12, 4, 7, 1, 15],

@@ -52,6 +52,50 @@
         return answer;
       }
 
+      //복습
+
+      function solution(arr) {
+        let answer = (sum = max = 0);
+
+        arr.forEach((item, idx) => {
+          item
+            .toString()
+            .split("")
+            .forEach((v) => {
+              sum += Number(v);
+            });
+
+          if (max < sum) {
+            max = sum;
+            answer = item;
+          } else if (max === sum && answer < item) answer = item;
+          sum = 0;
+        });
+        return answer;
+      }
+
+      function solution(arr) {
+        let answer = (max = 0);
+
+        for (let x of arr) {
+          let sum = 0;
+          let tmp = x;
+
+          while (tmp > 0) {
+            sum += tmp % 10;
+            tmp = parseInt(tmp / 10, 10);
+          }
+          if (max === sum && answer < x) answer = x;
+          else {
+            if (max < sum) {
+              max = sum;
+              answer = x;
+            }
+          }
+        }
+        return answer;
+      }
+
       let arr = [128, 460, 603, 40, 521, 137, 123];
       console.log(solution2(arr));
     </script>

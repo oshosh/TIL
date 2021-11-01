@@ -65,6 +65,34 @@
         return answer;
       }
 
+      // 복습
+      function solution(arr) {
+        let answer = [];
+
+        arr.forEach((v, idx) => {
+          // reverse
+          let tmp = v;
+          let reverseNumber = 0;
+
+          while (tmp > 0) {
+            reverseNumber += String(tmp % 10);
+            tmp = parseInt(tmp / 10, 10);
+          }
+          let index = Number(reverseNumber);
+
+          // 소수판별
+          let flag = false;
+          for (let i = 2; i < index / 2; i++) {
+            if (index % i === 0) {
+              flag = true;
+              break;
+            }
+          }
+          if (index >= 2 && flag === false) return answer.push(index);
+        });
+        return answer;
+      }
+
       let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
       console.log(solution2(arr));
     </script>

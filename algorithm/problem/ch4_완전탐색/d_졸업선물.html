@@ -97,6 +97,43 @@
         return Math.max(...compareIndexArr);
       }
 
+      // 복습
+      function solution(arr, s) {
+        let answer = 0;
+        let sum = [];
+        let discountSum = [];
+        let tot = s;
+
+        for (let x of arr) {
+          sum.push(x.reduce((acc, cur) => acc + cur, 0));
+          x[0] = Number(x[0] / 2);
+          discountSum.push(x.reduce((acc, cur) => acc + cur, 0));
+        }
+        sum.sort((a, b) => a - b);
+        discountSum.sort((a, b) => a - b);
+
+        discountSum.forEach((v, i) => {
+          let count = 0;
+          tot = s;
+          tot -= v;
+          count++;
+          for (let j = 0; j < sum.length; j++) {
+            if (i !== j) {
+              tot -= sum[j];
+              count++;
+              if (tot === 0) {
+                answer = Math.max(answer, count);
+                break;
+              } else if (tot < 0) {
+                answer = Math.max(answer, count - 1);
+                break;
+              }
+            }
+          }
+        });
+        return answer;
+      }
+
       // 답 5
       // let s = 41;
       // let arr = [

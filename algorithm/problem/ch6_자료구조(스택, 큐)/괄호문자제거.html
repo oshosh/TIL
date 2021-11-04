@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = [];
+
+        s = s.split("");
+        let arr = [];
+        let arr2 = [];
+        //
+        for (let i = 0; i < s.length; i++) {
+          if (s[i] === "(") {
+            arr2[0] = 1;
+            arr.push(s[i]);
+          } else if (s[i] === ")") arr2[0] = arr2[0] - 1;
+          else arr.push(s[i]);
+
+          if (arr2[0] === 1 || arr2[0] === -1) {
+            arr.pop();
+            if (arr2[0] === -1) arr2[0] = 0;
+          }
+
+          // for (let j = 0; j < arr2.length; j++) {
+          //   if (arr2[0] === 1 || arr2[0] === -1) {
+          //     arr.pop();
+          //     if (arr2[0] === -1) {
+          //       arr2[0] = 0;
+          //     }
+          //     break;
+          //   }
+          // }
+        }
+
+        return (answer = arr.join(""));
+      }
+
+      function solution(s) {
+        let answer = [];
+        let n = s.length;
+        s = s.split("");
+
+        let arr = [];
+        for (let i = 0; i < n; i++) {
+          arr.push(s[i]);
+
+          if (s[i] === ")") {
+            let j = arr.length - 1;
+
+            while (true) {
+              arr.pop();
+              j--;
+              if (arr[j] === "(") {
+                arr.pop();
+                break;
+              }
+            }
+          }
+        }
+
+        return (answer = arr.join(""));
+      }
+
+      console.log(solution("(A(BC)D)EF(G(H)(IJ)K)LM(N)"));
+    </script>
+  </body>
+</html>

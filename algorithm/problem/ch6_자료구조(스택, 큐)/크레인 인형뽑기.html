@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function peek(stack) {
+        if (stack.length !== 0) {
+          return stack[stack.length - 1];
+        }
+      }
+
+      function solution(board, moves) {
+        let answer = 0;
+        let stack = [];
+        let n = board.length;
+
+        let tmp = {};
+
+        for (let k of moves) {
+          for (let i = 0; i < n; i++) {
+            if (board[i][k - 1] !== 0) {
+              let peekData = peek(stack);
+
+              if (stack.length === 0) {
+                stack.push(board[i][k - 1]);
+                board[i][k - 1] = 0;
+                break;
+              } else if (peekData && peekData !== board[i][k - 1]) {
+                stack.push(board[i][k - 1]);
+                board[i][k - 1] = 0;
+                break;
+              } else {
+                board[i][k - 1] = 0;
+                stack.pop();
+                answer += 2;
+                break;
+              }
+            }
+          }
+        }
+        debugger;
+        return answer;
+      }
+
+      // const board = [
+      //   [0, 0, 0, 0, 0],
+      //   [2, 0, 1, 0, 3],
+      //   [2, 2, 5, 0, 1],
+      //   [4, 2, 4, 4, 2],
+      //   [4, 5, 1, 3, 1],
+      // ];
+
+      // const moves = [1, 1, 1, 1, 1];
+
+      let board = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 1, 0, 3],
+        [0, 2, 5, 0, 1],
+        [4, 2, 4, 4, 2],
+        [3, 5, 1, 3, 1],
+      ];
+
+      let moves = [1, 5, 3, 5, 1, 2, 1, 4];
+      console.log(solution(board, moves));
+    </script>
+  </body>
+</html>

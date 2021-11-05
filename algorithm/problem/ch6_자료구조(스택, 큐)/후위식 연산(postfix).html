@@ -9,12 +9,69 @@
   <body>
     <script>
       function solution(str) {
-        let answer = 0;
+        let answer = [];
 
-        return answer;
+        for (let x of str) {
+          if (isNaN(x)) {
+            // 문자
+            let result = 0;
+            switch (x) {
+              case "+":
+                result = answer[answer.length - 2] + answer.pop();
+                break;
+              case "*":
+                result = answer[answer.length - 2] * answer.pop();
+                break;
+              case "/":
+                result = answer[answer.length - 2] / answer.pop();
+                break;
+              case "-":
+                result = answer[answer.length - 2] - answer.pop();
+                break;
+            }
+            answer.pop();
+            answer.push(result);
+          } else {
+            // 숫자
+            answer.push(Number(x));
+          }
+        }
+        return answer[0];
       }
 
-      console.log(solution("352+*9-"));
+      function solution2(str) {
+        let answer = [];
+
+        for (let x of str) {
+          if (isNaN(x)) {
+            // 문자
+            let result = 0;
+            let lt = answer.pop();
+            let rt = answer.pop();
+            switch (x) {
+              case "+":
+                result = rt + lt;
+                break;
+              case "*":
+                result = rt * lt;
+                break;
+              case "/":
+                result = rt / lt;
+                break;
+              case "-":
+                result = rt - lt;
+                break;
+            }
+            answer.push(result);
+          } else {
+            // 숫자
+            answer.push(Number(x));
+          }
+        }
+        return answer[0];
+      }
+
+      console.log(solution2("352+*9-"));
     </script>
   </body>
 </html>

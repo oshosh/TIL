@@ -19,8 +19,6 @@
         let stack = [];
         let n = board.length;
 
-        let tmp = {};
-
         for (let k of moves) {
           for (let i = 0; i < n; i++) {
             if (board[i][k - 1] !== 0) {
@@ -43,7 +41,6 @@
             }
           }
         }
-        debugger;
         return answer;
       }
 

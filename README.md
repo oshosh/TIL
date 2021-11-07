@@ -1,5 +1,8 @@
 # Frontend_Tech_Stack
 
+## JS - prototype 기반의 객체지향언어 (자바스크립트)를 알아보자
+ - https://blog.naver.com/qhanfckwsmsd/222194290451
+ - 
 ## JS - Scope (함수 스코프 vs 블록 스코프 // 번외 즉시 실행 함수)
  - https://blog.naver.com/qhanfckwsmsd/222537123652
  - https://blog.naver.com/qhanfckwsmsd/222537131977

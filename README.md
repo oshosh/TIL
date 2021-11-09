@@ -18,7 +18,8 @@
 ## JS - 실행컨텍스트 (변수객체, 스코프 체인)
  - https://blog.naver.com/qhanfckwsmsd/222539946904
 
-## React - React 18 버전은 무엇이 달라졌는가?
+## React - React 18 버전은 무엇이 달라졌는가? 
+  ### (1) automatic batching
  - https://blog.naver.com/qhanfckwsmsd/222563398859
  
 ## React - react-router-dom v5 -> v6 업데이트 내용 살펴보기

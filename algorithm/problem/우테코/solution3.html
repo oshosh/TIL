@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>ings</th>
+          <th>menu</th>
+          <th>sell</th>
+          <th>result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>["r 10", "a 23", "t 124", "k 9"]</td>
+          <td>
+            ["PIZZA arraak 145", "HAMBURGER tkar 180", "BREAD kkk 30", "ICECREAM
+            rar 50", "SHAVEDICE rar 45", "JUICE rra 55", "WATER "]
+          </td>
+          <td>
+            ["BREAD 5", "ICECREAM 100", "PIZZA 7", "JUICE 10", "WATER a 20"]
+          </td>
+          <td>1161</td>
+        </tr>
+        <tr>
+          <td>[x 25", "y 20", "z 1000"]</td>
+          <td>["AAAA xyxy 15", "TTT yy 30", "BBBB xx 30"]</td>
+          <td>["BBBB 3", "TTT 2"]</td>
+          <td>-80</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <script>
+      function solution(ings, menu, sell) {
+        let answer = 0;
+
+        for (let x of sell) {
+          x = x.split(" ");
+          let idx = Number(x[1]);
+
+          let isMenuIndex = menu.findIndex((v) => v.split(" ")[0] === x[0]);
+
+          let currentMenu = Number(menu[isMenuIndex].split(" ")[2]);
+
+          let sum = 0;
+          for (let x of menu[isMenuIndex].split(" ")[1]) {
+            let price = Number(ings.filter((v) => v[0] === x)[0].split(" ")[1]);
+            sum += price;
+          }
+          currentMenu = (currentMenu - sum) * idx;
+          answer += currentMenu;
+        }
+        return answer;
+      }
+
+      // 1161
+      // let ings = ["r 10", "a 23", "t 124", "k 9"];
+      // let menu = [
+      //   "PIZZA arraak 145",
+      //   "HAMBURGER tkar 180",
+      //   "BREAD kkk 30",
+      //   "ICECREAM rar 50",
+      //   "SHAVEDICE rar 45",
+      //   "JUICE rra 55",
+      //   "WATER a 20",
+      // ];
+      // let sell = ["BREAD 5", "ICECREAM 100", "PIZZA 7", "JUICE 10", "WATER 1"];
+
+      // // -80
+      let ings = ["x 25", "y 20", "z 1000"];
+      let menu = ["AAAA xyxy 15", "TTT yy 30", "BBBB xx 30"];
+      let sell = ["BBBB 3", "TTT 2"];
+      console.log(solution(ings, menu, sell));
+    </script>
+  </body>
+</html>

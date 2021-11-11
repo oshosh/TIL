@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(time, plans) {
+        let answer = [];
+        let 출발 = 18;
+        let 도착 = 13;
+
+        const regx = /[APM]/gi;
+
+        for (let x of plans) {
+          let freeTime = time;
+          let x_출발시간 = Number(x[1].replace(regx, "")) + 12;
+          let x_도착시간 = Number(x[2].replace(regx, "")) + 12;
+          //let diff = Math.abs(출발 - x_출발시간) + Math.abs(도착 - x_도착시간);
+          if (x_출발시간 < 출발) continue;
+          if (x_도착시간 < 도착) continue;
+
+          answer = x[0];
+        }
+        return answer;
+      }
+
+      let time = 3.5;
+      let plans = [
+        ["홍콩", "11PM", "9AM"],
+        ["엘에이", "3PM", "2PM"],
+      ];
+      console.log(solution(time, plans));
+    </script>
+  </body>
+</html>

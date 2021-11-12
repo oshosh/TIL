@@ -1,5 +1,8 @@
 # Frontend_Tech_Stack
 
+## JS - 함수형 프로그래밍 정의, 특징 (일급함수, 순수함수, 불변성, 무상태, 고차함수, 표현식)
+ - https://blog.naver.com/qhanfckwsmsd/222566470100
+
 ## JS - prototype 기반의 객체지향언어 (자바스크립트)를 알아보자
  - https://blog.naver.com/qhanfckwsmsd/222194290451
  

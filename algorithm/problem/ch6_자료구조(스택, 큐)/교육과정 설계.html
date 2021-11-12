@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, m) {
+        let answer = "YES";
+        let selectQueueArr = [];
+
+        let splitArr = m.split("");
+
+        while (splitArr.length) {
+          let shiftStr = splitArr.shift();
+          for (let x of n) {
+            if (shiftStr === x) selectQueueArr.push(shiftStr);
+          }
+          if (selectQueueArr.length === 3 && selectQueueArr.join("") !== n) {
+            return "NO";
+          } else {
+            // 3개가 없다면
+            answer = "NO";
+          }
+        }
+        return answer;
+      }
+
+      function solution2(n, m) {
+        let answer = "YES";
+        let newN = n.split("");
+
+        for (let x of m) {
+          if (newN.includes(x)) {
+            let qS = newN.shift();
+            if (x !== qS) return "NO";
+          }
+        }
+        return answer;
+      }
+
+      console.log(solution2("CBA", "CKLJSBKLJKLASADGASDG"));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = arr;
+        let n = arr.length;
+
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+              let tmp = arr[j];
+              arr[j] = arr[j + 1];
+              arr[j + 1] = tmp;
+            }
+          }
+        }
+
+        return answer;
+      }
+
+      function solution(arr) {
+        let answer = arr;
+        let n = arr.length;
+
+        for (let i = 0; i < n - 1; i++) {
+          for (let j = 0; j < n - 1 - i; j++) {
+            if (arr[j] > arr[j + 1])
+              [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+          }
+        }
+        return answer;
+      }
+
+      let arr = [13, 5, 11, 7, 23, 15];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

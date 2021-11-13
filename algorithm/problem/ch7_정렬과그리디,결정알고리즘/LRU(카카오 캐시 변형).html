@@ -52,8 +52,8 @@
           for (let i = 0; i < cacheSize; i++) if (v === answer[i]) pos = i;
 
           if (pos !== -1) answer.splice(pos, 1);
-
           answer.unshift(v);
+          
           if (answer.length > cacheSize) answer.pop();
         });
 

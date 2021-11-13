@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./_.js"></script>
+  </head>
+  <body>
+    <script>
+      var users = [
+        { id: 1, name: "ID", age: 36 },
+        { id: 2, name: "BJ", age: 32 },
+        { id: 3, name: "JM", age: 32 },
+        { id: 4, name: "PJ", age: 27 },
+        { id: 5, name: "HA", age: 25 },
+        { id: 6, name: "JE", age: 26 },
+        { id: 7, name: "JI", age: 31 },
+        { id: 8, name: "MP", age: 23 },
+      ];
+
+      // 1. 명령형 코드
+      // (1) 30세 이상인 users를 거른다.
+      var temp_users = [];
+      for (var i = 0; i < users.length; i++) {
+        if (users[i].age >= 30) {
+          temp_users.push(users[i]);
+        }
+      }
+      console.log(temp_users);
+
+      // (2) 30세 이상인 users names를 수집한다.
+      var names = [];
+      for (var i = 0; i < temp_users.length; i++) {
+        names.push(temp_users[i].name);
+      }
+      console.log(names);
+
+      // (3) 30세 미만인 users를 거른다.
+      var temp_users = [];
+      for (var i = 0; i < users.length; i++) {
+        if (users[i].age < 30) {
+          temp_users.push(users[i]);
+        }
+      }
+      console.log(temp_users);
+
+      // (4) 30세 미만인 users의 ages를 수집한다.
+      var ages = [];
+      for (var i = 0; i < temp_users.length; i++) {
+        ages.push(temp_users[i].age);
+      }
+      console.log(ages);
+
+      // 2. _filter, _map으로 리팩토링
+
+      // (1) 30세 이상인 users를 걸러 name만 가져와라
+      var over_30 = _filter(users, function (users) {
+        return users.age >= 30;
+      });
+      console.log(over_30);
+
+      var names = _map(over_30, function (user) {
+        return user.name;
+      });
+      console.log(names);
+
+      // (2) 30세 미만 users를 걸러 name만 가져와라
+      let filter_under_30 = _map(
+        _filter(users, function (user) {
+          return user.age < 30;
+        }),
+        function (user) {
+          return user.name;
+        }
+      );
+      console.log(filter_under_30);
+
+      // 3. 외부 다형성
+      // (1) array_like, arguments, document.querySelectorAll
+
+      console.log(document.querySelectorAll("*")); // __proto__(prototype Link)=> prototype object는 NodeList다 그렇기 때문에 배열이 아님
+
+      console.log(
+        _map(document.querySelectorAll("*"), function (node) {
+          return node.nodeName;
+        })
+      );
+
+      // 유사배열 사용 (상위 부모의 기능을 Array.prototype 혹은 []로 참조시켜 부모의 기능을 상속한 것 마냥 사용함)
+      console.log(
+        [].map.call(document.querySelectorAll("*"), function (node) {
+          return node.nodeName;
+        })
+      );
+      console.log(
+        Array.prototype.map.call(
+          document.querySelectorAll("*"),
+          function (node) {
+            return node.nodeName;
+          }
+        )
+      );
+
+      // 내부 다형성
+      // (1) 1. predi, iter, mapper
+      // 내부 다형성 즉 map, filter 등의 내장 함수의 실제적인 로직을 알아야 외부 다형성 같은것들을 사용 할 수 있으며
+      // callback의 형태 위임을 시키기 때문에 자유롭게 사용이 가능하다.
+    </script>
+  </body>
+</html>

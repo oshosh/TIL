@@ -7,7 +7,8 @@
  - https://blog.naver.com/qhanfckwsmsd/222566470100
  ### (3) JS - 명령형 프로그래밍을 함수형 프로그래밍 으로 전환하기
  - https://blog.naver.com/qhanfckwsmsd/222566470100
- 
+ ### (4) 함수형 프로그래밍 내부 다형성 vs 외부 다형성
+ - https://blog.naver.com/qhanfckwsmsd/222567330389
 ## JS - Scope (함수 스코프 vs 블록 스코프 // 번외 즉시 실행 함수)
  - https://blog.naver.com/qhanfckwsmsd/222537123652
  - https://blog.naver.com/qhanfckwsmsd/222537131977

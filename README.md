@@ -1,10 +1,12 @@
 # Frontend_Tech_Stack
 
-## JS - 함수형 프로그래밍 정의, 특징 (일급함수, 순수함수, 불변성, 무상태, 고차함수, 표현식)
- - https://blog.naver.com/qhanfckwsmsd/222566470100
-
-## JS - prototype 기반의 객체지향언어 (자바스크립트)를 알아보자
+## JS - es5 
+ ### (1) Javascript prototype 기반의 객체지향언어 (자바스크립트)를 알아보자
  - https://blog.naver.com/qhanfckwsmsd/222194290451
+ ### (2) 함수형 프로그래밍 정의, 특징 (일급함수, 순수함수, 불변성, 무상태, 고차함수, 표현식) 
+ - https://blog.naver.com/qhanfckwsmsd/222566470100
+ ### (3) JS - 명령형 프로그래밍을 함수형 프로그래밍 으로 전환하기
+ - https://blog.naver.com/qhanfckwsmsd/222566470100
  
 ## JS - Scope (함수 스코프 vs 블록 스코프 // 번외 즉시 실행 함수)
  - https://blog.naver.com/qhanfckwsmsd/222537123652
@@ -12,7 +14,6 @@
 
 ## JS - 호이스팅
  - https://blog.naver.com/qhanfckwsmsd/222537207058
-
 
 ## JS - new Function, function 객체호출 (모던, es6), 커링, 콜백
  - https://blog.naver.com/qhanfckwsmsd/222538188799

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(cacheSize, arr) {
+        let answer = arr;
+        let newArr = [];
+
+        while (answer.length > 0) {
+          let num = answer.shift();
+
+          if (newArr.includes(num)) {
+            let idx = newArr.findIndex((v) => v === num);
+            [newArr[idx - 1], newArr[idx]] = [newArr[idx], newArr[idx - 1]];
+          } else newArr.unshift(num);
+          if (newArr.length > cacheSize) newArr.pop();
+        }
+
+        return newArr;
+      }
+
+      function solution(cacheSize, arr) {
+        let answer = Array.from({ length: cacheSize }, () => 0);
+
+        arr.forEach((v) => {
+          let pos = -1;
+          for (let i = 0; i < cacheSize; i++) if (v === answer[i]) pos = i;
+
+          if (pos === -1) {
+            //Cache Miss
+            for (let i = cacheSize - 1; i >= 1; i--) answer[i] = answer[i - 1];
+          } else {
+            //Cache Hit
+            for (let i = pos; i >= 1; i--) answer[i] = answer[i - 1];
+          }
+          answer[0] = v;
+        });
+        return answer;
+      }
+
+      function solution(cacheSize, arr) {
+        let answer = [];
+
+        arr.forEach((v) => {
+          let pos = -1;
+          for (let i = 0; i < cacheSize; i++) if (v === answer[i]) pos = i;
+
+          if (pos !== -1) answer.splice(pos, 1);
+
+          answer.unshift(v);
+          if (answer.length > cacheSize) answer.pop();
+        });
+
+        return answer;
+      }
+
+      let cacheSize = 5;
+      let arr = [1, 2, 3, 2, 6, 2, 3, 5, 7];
+      console.log(solution(cacheSize, arr));
+    </script>
+  </body>
+</html>

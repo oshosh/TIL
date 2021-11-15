@@ -23,6 +23,10 @@
 ## JS - 실행컨텍스트 (변수객체, 스코프 체인)
  - https://blog.naver.com/qhanfckwsmsd/222539946904
 
+## TS
+ ### (1) TypeScriprt는 왜 쓰는가 ?
+  - https://blog.naver.com/qhanfckwsmsd/222569184295
+
 ## React
  ### React - React 18 버전은 무엇이 달라졌는가? 
   #### (1) automatic batching

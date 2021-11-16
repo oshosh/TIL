@@ -26,7 +26,15 @@
 ## TS
  ### (1) TypeScriprt는 왜 쓰는가 ?
   - https://blog.naver.com/qhanfckwsmsd/222569184295
-
+ ### (2) Types의 기본 알아보기
+  #### 일반적인 TS의 type은 무엇이 있나 알아보자
+  - https://blog.naver.com/qhanfckwsmsd/222570172850
+  #### 함수에서 타입 이용하기 (JS -> TS 변환 및 spread, default, optional parameter)
+  - https://blog.naver.com/qhanfckwsmsd/222570183253
+  #### Array types, Tuple types는 언제 사용 하나 ?
+  - https://blog.naver.com/qhanfckwsmsd/222570205192
+  #### Type Aliases, String Literal Types, Union type
+  - https://blog.naver.com/qhanfckwsmsd/222570252500
 ## React
  ### React - React 18 버전은 무엇이 달라졌는가? 
   #### (1) automatic batching

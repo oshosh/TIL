@@ -9,7 +9,40 @@
   <body>
     <script>
       function solution(arr) {
-        let answer = [];
+        arr.sort((a, b) => a[0] - b[0]);
+
+        let max = (answer = 0);
+        for (let i = 0; i < arr.length; i++) {
+          let result = 1;
+          for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i][1] > arr[j][0]) result++;
+            else break;
+          }
+          if (result === 1) result = 0;
+          answer = Math.max(answer, result);
+        }
+        return answer;
+      }
+
+      function solution(times) {
+        let answer = 0;
+        let T_line = [];
+        for (let x of times) {
+          T_line.push([x[0], "s"]);
+          T_line.push([x[1], "e"]);
+        }
+        T_line.sort((a, b) => {
+          if (a[0] === b[0]) return a[1].charCodeAt() - b[1].charCodeAt();
+          else return a[0] - b[0];
+        });
+
+        let cnt = 0;
+        for (let x of T_line) {
+          if (x[1] === "s") cnt++;
+          else cnt--;
+
+          answer = Math.max(answer, cnt);
+        }
         return answer;
       }
 

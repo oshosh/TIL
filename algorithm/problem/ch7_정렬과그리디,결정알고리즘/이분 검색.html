@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr, m) {
+        let answer = 0;
+        let sortArr = arr.sort((a, b) => a - b);
+
+        let lt = 0;
+        let rt = sortArr.length - 1;
+        let mid = parseInt((lt + rt) / 2, 10);
+
+        while (m !== sortArr[mid]) {
+          if (m < sortArr[mid]) rt = mid - 1;
+          else if (m > sortArr[mid]) lt = mid + 1;
+
+          mid = parseInt((rt + lt) / 2, 10);
+        }
+        answer = mid + 1;
+
+        return answer;
+      }
+
+      function solution(arr, m) {
+        let answer = 0;
+        let sortArr = arr.sort((a, b) => a - b);
+        console.log(sortArr);
+        let lt = 0,
+          rt = sortArr.length - 1;
+
+        while (lt <= rt) {
+          let mid = parseInt((lt + rt) / 2, 10);
+
+          if (m === sortArr[mid]) {
+            answer = mid + 1;
+            break;
+          } else if (m < sortArr[mid]) rt = mid - 1;
+          else lt = mid + 1;
+        }
+        return answer;
+      }
+
+      let m = 32;
+      let arr = [23, 87, 65, 12, 57, 32, 99, 81];
+      console.log(solution(arr, 32));
+    </script>
+  </body>
+</html>

@@ -35,6 +35,11 @@
   - https://blog.naver.com/qhanfckwsmsd/222570205192
   #### Type Aliases, String Literal Types, Union type
   - https://blog.naver.com/qhanfckwsmsd/222570252500
+  #### OOP 4가지 원칙 및 OOP를 사용하여 기초알아보기
+  - https://blog.naver.com/qhanfckwsmsd/222574013929
+  #### OOP 캡슐화 사용하기 그리고 OOP Getter / Setter
+  - https://blog.naver.com/qhanfckwsmsd/222574026705
+  - https://blog.naver.com/qhanfckwsmsd/222574039205
 ## React
  ### React - React 18 버전은 무엇이 달라졌는가? 
   #### (1) automatic batching

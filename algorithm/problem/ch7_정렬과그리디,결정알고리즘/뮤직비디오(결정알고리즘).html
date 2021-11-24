@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, m) {
+        let answer = Number.MAX_SAFE_INTEGER;
+
+        let rt = n.length - 1;
+        let mid = parseInt(n.length / 2, 10);
+        let currentMax = 0;
+
+        while (mid <= rt) {
+          let max = 0;
+          let leftValue = (midValue = rightValue = 0);
+
+          for (let i = 0; i < mid; i++) leftValue += n[i];
+          for (let i = mid; i < rt; i++) midValue += n[i];
+          for (let i = rt; i <= n.length - 1; i++) rightValue += n[i];
+
+          if (leftValue > rightValue) rt--;
+          else if (leftValue < rightValue) mid++;
+
+          // 3등분 중에 max값을 찾는다.
+          max = Math.max(max, leftValue, midValue, rightValue);
+
+          // while문을 돌때마다 3등분의 max 값들 중 최소값을 찾아야한다.
+          if (currentMax === 0) currentMax = max;
+          else if (currentMax < max) break;
+          else {
+            answer = Math.min(answer, currentMax, max);
+            currentMax = answer;
+          }
+        }
+        return answer;
+      }
+
+      function count(songs, capacity) {
+        let cnt = 1,
+          sum = 0;
+        for (let x of songs) {
+          if (sum + x > capacity) {
+            cnt++;
+            sum = x;
+          } else sum += x;
+        }
+        return cnt;
+      }
+
+      function solution2(m, songs) {
+        let answer;
+        let lt = Math.max(...songs);
+        let rt = songs.reduce((acc, cur) => acc + cur, 0);
+
+        while (lt <= rt) {
+          let mid = parseInt((lt + rt) / 2, 10);
+          if (count(songs, mid) <= m) {
+            answer = mid;
+            rt = mid - 1;
+          } else lt = mid + 1;
+        }
+
+        return answer;
+      }
+      console.log(solution2(3, [1, 2, 3, 4, 5, 6, 7, 8, 9]));
+      console.log(solution([1, 2, 3, 4, 5, 6, 7, 8, 9], 3));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function count(stable, dist) {
+        let cnt = 1,
+          ep = stable[0];
+        for (let i = 1; i < stable.length; i++) {
+          if (stable[i] - ep >= dist) {
+            cnt++;
+            ep = stable[i];
+          }
+        }
+        return cnt;
+      }
+      function solution(c, stable) {
+        let answer;
+        stable.sort((a, b) => a - b);
+        let lt = 1;
+        let rt = stable[stable.length - 1];
+
+        while (lt <= rt) {
+          let mid = parseInt((lt + rt) / 2, 10);
+          if (count(stable, mid) >= c) {
+            answer = mid;
+            lt = mid + 1;
+          } else rt = mid - 1;
+        }
+
+        return answer;
+      }
+
+      function count(stable, dist) {
+        let cnt = 1, // stable[0]에 해당하는 자기 자신은 무조건 들어가니까
+          ep = stable[0];
+
+        for (let i = 1; i < stable.length; i++) {
+          // 1 이상의 배열번째가 >= dist (=mid) 값보다 크거나 같다면 배치가 가능하다는 소리
+          if (stable[i] - ep >= dist) {
+            cnt++;
+            ep = stable[i];
+          }
+        }
+        return cnt;
+      }
+      function solution(c, stable) {
+        let answer = 0;
+        // 이분 검색을 위한 소트
+        stable.sort((a, b) => a - b);
+
+        // lt, rt 지정
+        let lt = 1,
+          rt = stable[stable.length - 1];
+
+        // 결정 알고리즘
+        while (lt <= rt) {
+          let mid = parseInt((lt + rt) / 2, 10);
+          let co = count(stable, mid);
+          if (co >= c) {
+            answer = mid;
+            lt = mid + 1; // c
+          } else rt = mid - 1; // mid보다 커지면 배치 될 말은 더 적어지는법이니 rt는 하나씩 줄이고...
+        }
+        return answer;
+      }
+
+      let arr = [1, 2, 8, 4, 9];
+      console.log(solution(3, arr));
+    </script>
+  </body>
+</html>

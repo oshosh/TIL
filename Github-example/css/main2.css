@@ -1,0 +1,177 @@
+/*COMMON*/
+.body__container {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+}
+a {
+  text-decoration: none;
+}
+/*FLOAT CLEARFIX*/
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+.float--left {
+  float: left;
+}
+.float--right {
+  float: right;
+}
+
+/*BTN*/
+.btn {
+  height: 34px;
+  background: #eee linear-gradient(to bottom, #fcfcfc, #eee);
+  border: 1px solid #d5d5d5;
+  border-radius: 4px;
+
+  display: inline-flex; /* text의 너비 만큼*/
+  align-items: center;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  cursor: pointer;
+  box-sizing: border-box; /*padding, border 등이 들어갈때 커지는 경우 막아줌*/
+
+  position: relative;
+  color: #333;
+}
+
+/*왼쪽 상단 기준으로 부모 .btn의 사이즈 100%사용*/
+.btn:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.btn.btn--primary {
+  border: 1px solid #65b836;
+  color: #fff;
+  background: #55a532 linear-gradient(#91dd70, #55ae2e);
+}
+
+/*INPUT*/
+.input--text {
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+  font-size: 16px;
+}
+
+.input--text:focus {
+  border-color: #51a7e8;
+  /*focus시 안쪽 그림자와 바깥쪽 그림자 유지*/
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075),
+    0 0 5px rgba(81, 167, 232, 0.5);
+}
+
+.input--text::-webkit-input-placeholder {
+  color: #cacaca;
+}
+.input--text::-ms-input-placeholder {
+  color: #cacaca;
+}
+.input--text::-moz-input-placeholder {
+  color: #cacaca;
+}
+
+/*HEADER*/
+header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
+  background: #fff;
+}
+
+header .inner {
+  max-width: 980px;
+  height: 78px;
+  margin: 0 auto;
+}
+
+header .menu-group {
+  display: flex;
+  align-items: center;
+  height: 100%; /*상위 inner의 height에 영향을 받음*/
+}
+
+header .logo {
+  margin-right: 10px;
+}
+
+header .logo a {
+  background: url("../img/logo.svg");
+  width: 32px;
+  height: 32px;
+  display: block;
+  text-indent: -9999px;
+}
+
+header .logo a:hover {
+  background: url("../img/logo_on.svg");
+}
+
+header .main-menu {
+  display: flex;
+}
+
+header .main-menu li a {
+  /* a태그는 inline 요소라 padding의 위 아래 값을 제대로 사용 할 수 없기 때문에 block으로 변경*/
+  display: block;
+  padding: 10px;
+  color: #3c4146;
+}
+
+header .main-menu li a:hover {
+  color: #4078c0;
+}
+
+header .sign-group {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+header .btn-group {
+  order: 2;
+  display: flex;
+}
+header .btn-group .sign-in {
+  margin-right: 4px;
+}
+#search-form {
+  order: 1;
+  margin-right: 12px;
+}
+#search {
+  width: 160px;
+  font-size: 14px;
+}
+#search + [type="submit"] {
+  display: none;
+}
+header .sub-menu {
+  display: flex;
+  margin-right: 10px;
+}
+
+header .sub-menu li a {
+  padding: 8px;
+  display: block;
+  font-size: 13px;
+  color: #3c4146;
+}
+header .sub-menu li a:hover {
+  color: #4078c0;
+}

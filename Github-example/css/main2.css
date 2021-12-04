@@ -353,3 +353,91 @@ header .sub-menu li a:hover {
   font-size: 14px;
   color: #767676;
 }
+
+/*WHERE IS*/
+.section--where-is {
+}
+.section--where-is .inner {
+  margin-top: 80px;
+}
+#map {
+  width: 100%;
+  height: 400px;
+  margin-top: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: none;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Pricing card */
+.section--pricing {
+  background: linear-gradient(#f5f5f5, #fff);
+}
+.section--pricing .inner {
+  padding: 80px 0;
+}
+
+.section--pricing .card {
+  display: flex;
+
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+}
+.section--pricing .card .cell {
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+.section--pricing .card .cell1 .btn {
+  height: 50px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.section--pricing .card .cell2 {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.5;
+  flex-grow: 1;
+  flex-basis: 0;
+
+  border-left: 1px solid #e5e5e5;
+}
+
+/*FOOTER*/
+
+footer {
+}
+footer .inner {
+  padding: 50px 0;
+  border-top: 1px solid #eee;
+}
+footer .site-links {
+  display: flex;
+}
+footer .site-links li {
+  font-size: 12px;
+  margin-right: 10px;
+  color: #767676;
+}
+footer .site-links li a {
+  color: #4078c0;
+}
+footer .site-links li a:hover {
+  text-decoration: underline;
+}
+footer .logo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 24px;
+  height: 24px;
+}
+footer .logo:hover svg {
+  fill: #4078c0;
+}

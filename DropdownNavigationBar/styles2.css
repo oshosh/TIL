@@ -1,0 +1,198 @@
+@import url("http://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*nav 정렬*/
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: #3e8da8;
+}
+
+nav .navbar {
+  height: 100%; /*nav 부모 heigth 70px 가져옴*/
+  max-width: 1200px; /*navbar container를 최대 1200px 까지 적용함*/
+  /* background: tomato; */
+  margin: auto; /* 가운데 정렬 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+}
+
+nav .navbar .logo a {
+  color: #fff;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+nav .navbar .nav-links {
+  /* https://ofcourse.kr/css-course/%EC%88%98%EC%A7%81-%EA%B0%80%EC%9A%B4%EB%8D%B0-%EC%A0%95%EB%A0%AC */
+  /* background: red; */
+  height: 100%; /*.navbar 의 height 가져옴*/
+  line-height: 70px;
+}
+
+/*왼쪽 정렬*/
+nav .navbar .nav-links .links {
+  display: flex;
+}
+
+nav .navbar .nav-links .links li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0 14px;
+
+  /* background: rebeccapurple; */
+}
+
+nav .navbar .nav-links .links li a {
+  color: #fff;
+  white-space: nowrap; /*li에서 padding으로 인해 줄바뀜 현상이 생겨 공백으로 내려가는 현상이 있음*/
+
+  /* background: rebeccapurple; */
+  height: 100%;
+  color: #fff;
+}
+
+nav .navbar .nav-links .links li .arrow {
+  /* background: red; */
+  height: 100%;
+  width: 22px;
+  text-align: center;
+  color: #fff;
+  line-height: 70px;
+  transition: all 0.3s ease;
+}
+
+/*navbar 요소 hover*/
+.navbar .nav-links .links li:hover .htmlcss-arrow,
+.navbar .nav-links .links li:hover .js-arrow {
+  transform: rotate(180deg);
+}
+
+/*navbar 요소 sub-menu*/
+.navbar .nav-links .links .sub-menu {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  background: #3e8da8;
+  line-height: 40px;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+  display: none;
+}
+
+.navbar .nav-links .links .sub-menu li {
+  padding: 0 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar .nav-links .links .sub-menu li a {
+  font-size: 15px;
+  font: 500;
+}
+
+.navbar .nav-links .links li:hover .htmlCss-sub-menu,
+.navbar .nav-links .links li:hover .js-sub-menu {
+  display: block;
+}
+
+/*navbar 요소의 sub-menu에 sub-more-arrow*/
+.navbar .nav-links .links .sub-menu li .more-arrow {
+  line-height: 40px;
+}
+
+.navbar .nav-links .links li .more .more-sub-menu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  border-radius: 0 4px 4px 4px;
+}
+
+.navbar .nav-links .links li .more:hover .more-sub-menu {
+  display: block;
+}
+
+/*search-bar*/
+.navbar .search-box {
+  /*돋보기*/
+  position: relative;
+  height: 40px;
+  width: 40px;
+  /* background: red; */
+}
+
+.navbar .search-box i {
+  color: #fff;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  line-height: 40px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.navbar .search-box .input-box {
+  /*돋보기 아래 박스*/
+  height: 60px;
+  width: 300px;
+  background: #3e8da8;
+  position: absolute;
+  top: 85px;
+
+  /* left: -260px; */
+  right: calc(100% - 40px);
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+.navbar.showInput .search-box .input-box {
+  top: 65px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.navbar .search-box .input-box::before {
+  /*돋보기 아래 박스의 화살표*/
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  background: #3e8da8;
+  right: 10px;
+  top: -6px;
+  transform: rotate(45deg);
+}
+
+.navbar .search-box .input-box input {
+  position: absolute;
+  height: 35px;
+  width: 280px;
+  z-index: 98;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  padding: 0 15px;
+  font-size: 16px;
+}
+
+/* 27:16 */
+/* https://www.youtube.com/watch?v=AkMIwNpK5jQ */

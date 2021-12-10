@@ -63,6 +63,8 @@ nav .navbar .nav-links .links li a {
   /* background: rebeccapurple; */
   height: 100%;
   color: #fff;
+  font-size: 16px;
+  font-weight: 500px;
 }
 
 nav .navbar .nav-links .links li .arrow {
@@ -119,6 +121,7 @@ nav .navbar .nav-links .links li .arrow {
   top: 0;
   left: 100%;
   border-radius: 0 4px 4px 4px;
+  display: none;
 }
 
 .navbar .nav-links .links li .more:hover .more-sub-menu {
@@ -193,6 +196,131 @@ nav .navbar .nav-links .links li .arrow {
   padding: 0 15px;
   font-size: 16px;
 }
-
+.navbar .bx-menu,
+.nav-links .sidebar-logo .logo_name,
+.nav-links .sidebar-logo .bx-x {
+  display: none;
+}
 /* 27:16 */
 /* https://www.youtube.com/watch?v=AkMIwNpK5jQ */
+
+@media (max-width: 954px) {
+  nav .navbar {
+    max-width: 100%;
+    padding: 0 25px;
+  }
+  nav .navbar .logo a {
+    font-size: 26px;
+  }
+  nav .navbar .nav-links .links li {
+    padding: 0 10px;
+  }
+  nav .navbar .nav-links .links li a {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 800px) {
+  /* 29:33 */
+  /* nav .navbar .nav-link 에 이미 height가 설정 되어 있기 때문에  */
+  /* https://stackoverflow.com/questions/16638958/css-displayblock-and-positionfixed */
+  nav .navbar .nav-links {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    max-width: 270px;
+    width: 100%;
+
+    background: #3e8da8;
+    padding: 20px;
+    line-height: 40px;
+    transition: all 0.4s ease;
+  }
+
+  nav .navbar .nav-links .sidebar-logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .navbar .bx-menu,
+  .nav-links .sidebar-logo .logo_name,
+  .nav-links .sidebar-logo .bx-x {
+    color: #fff;
+    font-size: 25px;
+    font-weight: 500;
+  }
+
+  .navbar .bx-menu,
+  .nav-links .sidebar-logo .logo_name,
+  .nav-links .sidebar-logo .bx-x {
+    display: block;
+  }
+
+  nav .navbar .nav-links .links {
+    display: block;
+    margin-top: 20px;
+  }
+
+  nav .navbar .nav-links .links li {
+    display: block;
+  }
+
+  .navbar .nav-links .links .sub-menu {
+    /*sub menu*/
+    display: none;
+    position: relative;
+    top: 0;
+    left: 0;
+    box-shadow: none;
+  }
+
+  .navbar .nav-links .links .sub-menu li {
+    border-bottom: none;
+  }
+
+  .navbar .nav-links .links li:hover .htmlCss-sub-menu,
+  .navbar .nav-links .links li:hover .js-sub-menu {
+    display: none;
+  }
+
+  .navbar .nav-links .links .more:hover .more-sub-menu {
+    display: none;
+  }
+
+  nav .navbar .nav-links .links li .arrow {
+    line-height: 40px;
+  }
+
+  .links li:hover .htmlcss-arrow,
+  .links li:hover .js-arrow {
+    transform: rotate(0deg);
+  }
+
+  .navbar .nav-links.show1 .links .sub-menu.htmlCss-sub-menu {
+    display: block;
+  }
+
+  .navbar .nav-links.show3 .links .sub-menu.js-sub-menu {
+    display: block;
+  }
+
+  .navbar .nav-links.show2 .links .more .more-sub-menu {
+    display: block;
+  }
+
+  .navbar .nav-links.show1 .links .htmlcss-arrow,
+  .navbar .nav-links.show3 .links .js-arrow {
+    transform: rotate(180deg);
+  }
+  .navbar .nav-links.show2 .links .more-arrow {
+    transform: rotate(90deg);
+  }
+}
+@media (max-width: 370px) {
+  nav .navbar .nav-links {
+    max-width: 100%;
+  }
+}

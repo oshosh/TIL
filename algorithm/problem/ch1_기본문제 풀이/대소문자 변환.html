@@ -8,6 +8,18 @@
   </head>
   <body>
     <script>
+      // 22-02-06
+      function solution(str) {
+        let answer = "";
+
+        for (let x of str.split("")) {
+          if (97 > x.charCodeAt(0))
+            answer += String.fromCharCode(32 + x.charCodeAt(0));
+          else answer += String.fromCharCode(x.charCodeAt(0) - 32);
+        }
+        return answer;
+      }
+
       function solution(str) {
         let answer = "";
 

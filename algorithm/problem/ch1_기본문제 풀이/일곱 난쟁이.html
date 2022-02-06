@@ -8,6 +8,23 @@
   </head>
   <body>
     <script>
+      // 22-02-06
+      function solution(arr) {
+        let sum = arr.reduce((acc, cur) => (acc += cur), 0);
+        let idx,
+          idx2 = 0;
+
+        arr.map((item, i) => {
+          arr.map((item2, i2) => {
+            if (item !== item2)
+              if (sum - (item + item2) === 100) return [(idx = i), (idx2 = i2)];
+          });
+        });
+        arr.splice(idx, 1);
+        arr.splice(idx2, 1);
+        return arr;
+      }
+
       function solution(arr) {
         let answer = 0;
         let sum = 0;

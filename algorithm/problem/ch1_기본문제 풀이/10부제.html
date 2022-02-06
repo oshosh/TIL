@@ -8,6 +8,13 @@
   </head>
   <body>
     <script>
+      // 22-02-06
+      function solution3(day, arr) {
+        let newArr = [];
+        for (let x of arr) if (x % 10 === day) newArr.push(x);
+        return newArr.length;
+      }
+
       function solution(inputNum, arr) {
         let answer = 0;
 

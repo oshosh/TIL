@@ -8,6 +8,17 @@
   </head>
   <body>
     <script>
+      // 22-02-06
+      function solution4(a, b, c, d, e, f, g) {
+        let answer = Number.MAX_SAFE_INTEGER;
+        const arr = [a, b, c];
+        for (let x of arr) {
+          if (x < answer) answer = x;
+        }
+
+        return answer;
+      }
+
       function solution(a, b, c, d, e, f, g) {
         let answer;
         let arr = [a, b, c, d, e, f, g];

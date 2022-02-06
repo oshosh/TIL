@@ -8,6 +8,17 @@
   </head>
   <body>
     <script>
+      // 22-02-06
+      function solution2(arr) {
+        let answer = 0;
+
+        let newArr = [];
+        for (let x of arr) if (x % 2 === 1) newArr.push(x);
+
+        answer = newArr.reduce((arr, cur) => (arr += cur), 0);
+        return [answer, Math.min(...newArr)];
+      }
+
       function solution(arr) {
         let answer;
         let sum = 0;

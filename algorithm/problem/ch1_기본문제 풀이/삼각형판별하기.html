@@ -8,13 +8,33 @@
   </head>
   <body>
     <script>
+      // 22-02-06
+      function solution2(a, b, c) {
+        const answer = "";
+        const arr = [a, b, c];
+        const max = Math.max(...arr);
+
+        const newArr = arr.filter((item) => item !== max);
+
+        if (
+          newArr[0] + newArr[1] > max &&
+          newArr[0] > max - newArr[1] &&
+          newArr[1] > max - newArr[0]
+        ) {
+          answer = "YES";
+          return answer;
+        } else {
+          answer = "NO";
+          return answer;
+        }
+      }
+
       function solution(a, b, c) {
         let answer;
         let arr = [a, b, c];
         let max = Math.max.apply(null, arr);
 
         let data = arr.filter((v) => v !== max);
-
         if (max < data[0] + data[1]) {
           if (data[0] > max - data[1]) {
             if (data[1] > max - data[0]) {

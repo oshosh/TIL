@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <app-header v-bind:프롭스 속성 이름="상위 컴포넌트의 데이터"></app-header> -->
+      <app-header v-bind:title="str"></app-header>
+
+      <!-- <app-contents v-on:하위 컴포넌트에서 발생한 이름 ="상위 컴포넌트의 메서드 이름"></app-contents> -->
+      <!-- <app-contents
+        v-on:change="changeStr"
+      ></app-contents> -->
+
+      <app-contents v-bind:on-change="changeStr"></app-contents>
+    </div>
+
+    <!-- development version -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- production version -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script>
+      new Vue({
+        // 인스턴스 옵션
+        el: "#app",
+        data: {
+          // props 정의
+          str: "프롭스 문자열",
+        },
+        methods: {
+          changeStr: function () {
+            this.str = "변경되었습니다.";
+          },
+        },
+        // 하위 컴포넌트...
+        components: {
+          // '컴포넌트 이름': 컴포넌트 내용,
+          "app-header": {
+            // app-header 컴포넌트 내용
+            props: ["title"],
+            template: "<h1>{{title}}</h1>",
+          },
+          "app-contents": {
+            // on-change
+            props: ["onChange"],
+            template:
+              // '<main>컨텐츠<button v-on:click="change">메세지 변경 버튼</button></main>',
+              '<main>컨텐츠<button v-on:click="onChange">메세지 변경 버튼</button></main>',
+            methods: {
+              change() {
+                this.$emit("change"); // 상위 methods로 올림
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,5 +1,8 @@
-# Frontend_Tech_Stack123123132
+# Frontend_Tech_Stack
 
+## 코어자바스크립트 
+ ### 2장 실행컨텍스트
+  - https://blog.naver.com/qhanfckwsmsd/222699005648
 ## JS - es5 
  ### (1) Javascript prototype 기반의 객체지향언어 (자바스크립트)를 알아보자
  - https://blog.naver.com/qhanfckwsmsd/222194290451

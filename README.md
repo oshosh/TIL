@@ -1,6 +1,8 @@
 # Frontend_Tech_Stack
 
 ## 코어자바스크립트 
+ ### 1장 데이터 타입
+  - https://blog.naver.com/qhanfckwsmsd/222701649571
  ### 2장 실행컨텍스트
   - https://blog.naver.com/qhanfckwsmsd/222699005648
 ## JS - es5 

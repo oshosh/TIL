@@ -1,8 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
-// styled component 기초
-
 const Title = styled.h1`
   color: ${({ theme }) => theme.textColor};
 `;
@@ -12,8 +10,8 @@ const Wrapper = styled.div`
   width: 100vw;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.backgroundColor}; ;
 `;
+
 const rotationAnimation = keyframes`
   0% {
     transform:rotate(0deg);
@@ -48,7 +46,6 @@ const Box = styled.div`
 const Box2 = styled.div`
   width: 100px;
   height: 100px;
-  background-color: ${({ bgColor }) => bgColor};
 `;
 
 const Circle = styled(Box2)`
@@ -62,11 +59,14 @@ const Btn = styled.button`
 const Input = styled.input.attrs({ required: true, maxLength: 3 })`
   color: tomato;
 `;
+
 function App1() {
   return (
-    <Wrapper>
-      <Title>Hello</Title>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <Title>Hello</Title>
+      </Wrapper>
+    </>
   );
 }
 

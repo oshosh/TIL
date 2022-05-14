@@ -8,6 +8,8 @@
 ## JS - es5 
  ### (1) Javascript prototype 기반의 객체지향언어 (자바스크립트)를 알아보자
  - https://blog.naver.com/qhanfckwsmsd/222194290451
+ ### (1-2) Javascript prototype 기반의 상속의 사용 방법
+ - https://blog.naver.com/qhanfckwsmsd/222732411562
  ### (2) 함수형 프로그래밍 정의, 특징 (일급함수, 순수함수, 불변성, 무상태, 고차함수, 표현식) 
  - https://blog.naver.com/qhanfckwsmsd/222566470100
  ### (3) JS - 명령형 프로그래밍을 함수형 프로그래밍 으로 전환하기

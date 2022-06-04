@@ -28,6 +28,7 @@ function time(fees, list) {
   if (min < 기본시간) return 기본요금;
   return 기본요금 + Math.ceil((min - 기본시간) / 단위시간) * 단위요금;
 }
+
 function solution(fees, records) {
   let answer = [];
   let recordsList = records.map((item) => item.split(" "));

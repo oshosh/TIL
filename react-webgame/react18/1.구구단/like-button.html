@@ -1,0 +1,51 @@
+<html>
+  <head> </head>
+  <body>
+    <div id="root"></div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!--<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>-->
+    <!--<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>-->
+    <script type="text/babel">
+      "use strict";
+
+      const e = React.createElement;
+
+      class LikeButton extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = { liked: false };
+        }
+
+        onClickButton = () => {
+          this.setState({
+            liked: true,
+          });
+        };
+
+        render() {
+          if (this.state.liked) {
+            return "You liked this.";
+          }
+
+          return <button onClick={this.onClickButton}>Like</button>;
+        }
+      }
+    </script>
+    <script type="text/babel">
+      // react 17
+      // ReactDOM.render(<LikeButton />, document.querySelector("#root"));
+      // react 18
+      ReactDOM.createRoot(document.querySelector("#root")).render(
+        <LikeButton />
+      );
+    </script>
+  </body>
+</html>

@@ -9,6 +9,27 @@
   <body>
     <script>
       function solution(arr) {
+        let answer = [];
+
+        let acc = Array.from({ length: arr.length }, () => 0);
+        let acc2 = 0;
+        let acc3 = Array.from({ length: arr.length }, () => 0);
+        let acc4 = 0;
+        for (let i = 0; i < arr.length; i++) {
+          for (let j = 0; j < arr.length; j++) {
+            acc[i] += arr[i][j]; // 가로
+            acc3[i] += arr[j][i]; // 세로
+
+            if (i === 0) acc2 += arr[j][j]; // 왼쪽 대각선
+          }
+          acc4 += arr[i][arr.length - 1 - i];
+        }
+        answer = Math.max(0, ...[...acc, acc2, acc4, ...acc3]);
+
+        return answer;
+      }
+      
+      function solution(arr) {
         let sum = (sum2 = sum3 = sum4 = 0);
 
         console.log(arr);

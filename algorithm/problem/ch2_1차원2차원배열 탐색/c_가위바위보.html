@@ -8,6 +8,18 @@
   </head>
   <body>
     <script>
+      function solution(aInfo, bInfo) {
+        let answer = [];
+
+        for (let i = 0; i < aInfo.length; i++) {
+          if (aInfo[i] - bInfo[i] === 1) answer.push("A");
+          else if (aInfo[i] - bInfo[i] === 2) answer.push("B");
+          else if (aInfo[i] - bInfo[i] === -1) answer.push("B");
+          else answer.push("D");
+        }
+        return answer;
+      }
+      
       function role(person1, person2) {
         let winner = "";
 

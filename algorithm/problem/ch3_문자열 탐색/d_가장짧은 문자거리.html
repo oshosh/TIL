@@ -8,6 +8,47 @@
   </head>
   <body>
     <script>
+      function solution(str, k) {
+        let answer = [];
+        let arr = Array.from({ length: str.length }, () => 0);
+        let arr2 = Array.from({ length: str.length }, () => 0);
+
+        let currentK = str.split("").findIndex((item) => item === k);
+        for (let j = 0; j < str.length; j++) {
+          if (str[j] === k) {
+            currentK = j;
+            arr[j] = 0;
+          } else {
+            arr[j] = Number(Math.abs(j - currentK));
+          }
+        }
+
+        let currentReverseK = str
+          .split("")
+          .reverse()
+          .findIndex((item) => item === k);
+
+        for (let j = 0; j < str.length; j++) {
+          if (str.split("").reverse()[j] === k) {
+            currentReverseK = j;
+            arr2[j] = 0;
+          } else {
+            arr2[j] = Number(Math.abs(j - currentReverseK));
+          }
+        }
+
+        let n = 0;
+        let reverseArr2 = arr2.reverse();
+
+        while (n < arr.length) {
+          if (arr[n] === reverseArr2[n]) answer.push(arr[n]);
+          else if (arr[n] < reverseArr2[n]) answer.push(arr[n]);
+          else answer.push(reverseArr2[n]);
+          n++;
+        }
+        return answer.join(" ");
+      }
+      
       function solution(s, t) {
         let answer = [];
         let n = s.length;

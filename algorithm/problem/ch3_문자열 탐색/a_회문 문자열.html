@@ -9,6 +9,39 @@
   <body>
     <script>
       function solution(str) {
+      let answer = "NO";
+      let toLowerCaseStr = str.toLowerCase();
+
+      for (let i = 0; i < toLowerCaseStr.length / 2; i++) {
+        if (
+          toLowerCaseStr[i] !== toLowerCaseStr[toLowerCaseStr.length - 1 - i]
+        )
+          return "NO";
+        else answer = "YES";
+      }
+      return answer;
+    }
+      
+    function solution(str) {
+      let answer;
+      let splitStr = str.toLowerCase().split("");
+      let reverseStr = [];
+      let index = 0;
+
+      while (index < str.length) {
+        reverseStr.push(splitStr.pop());
+        index++;
+      }
+
+      if (str.toLowerCase() === reverseStr.join("")) {
+        answer = "YES";
+      } else {
+        answer = "NO";
+      }
+
+      return answer;
+    }
+      function solution(str) {
         let answer;
         let n = str.length;
         let isHalf = n % 2 === 0;

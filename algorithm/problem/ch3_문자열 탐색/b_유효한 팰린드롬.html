@@ -8,6 +8,13 @@
   </head>
   <body>
     <script>
+      function solution(str) {
+        let answer = "yes";
+        str = str.toLowerCase().replace(/[^a-z]/g, "");
+        if (str !== str.split("").reverse().join("")) return "no";
+        return answer;
+      }
+      
       function regExp(str) {
         var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
         if (reg.test(str)) {

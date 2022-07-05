@@ -17,16 +17,22 @@
     }
     workPartTime() {}
   }
-
+  
+  // bad code
   function pay(employee: Employee): Employee {
-    employee.pay();
+    employee.pay(); 
     return employee;
   }
 
   // constrains
   function payGeneric<T extends Employee>(employee: T): T {
-    employee.pay();
+    employee.pay(); // 코드에서는 employee의 T의 타입을 추론 할 수 없는 문제가 생김 <T extends Employee>
     return employee;
+  }
+  
+  // T의 값 중에 있는 key로만 사용함.
+  function getValue<T, K extends keyof T>(obj: T, str: K): T[K] {
+    return obj[str];
   }
     
   const osh = new FullTimeEmployee();
@@ -45,4 +51,18 @@
 
   // good code
   const oshGenericAfterPay = payGeneric(osh);
+  
+  const obj = {
+    name: "osh",
+    age: 20,
+  };
+
+  const obj2 = {
+    animal: "dog",
+  };
+
+  console.log(getValue(obj, "name")); // osh
+  console.log(getValue(obj, "age")); // 20
+  console.log(getValue(obj2, "animal")); // dog
+  // console.log(getValue(obj2, "score")); // score는 obj2의 키가 없기 때문에 error
 }

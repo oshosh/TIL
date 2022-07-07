@@ -51,6 +51,7 @@
   const obj2: Nullable<Video> = {
     title: null,
     author: null,
+    description: "typescript",
   };
 
   type Proxy<T> = {
@@ -61,4 +62,50 @@
   type Proxify<T> = {
     [P in keyof T]: Proxy<T[P]>;
   };
+
+  type MyPick<T extends object, K extends keyof T> = { [Key in K]: T[Key] };
+
+  interface Todo {
+    title: string;
+    description: string;
+    completed: boolean;
+  }
+
+  type TodoPreview = MyPick<Todo, "title" | "completed">;
+
+  const todo = {
+    title: "Clean room",
+    completed: false,
+  };
+
+  const tuple = ["tesla", "model 3", "model X", "model Y"] as const;
+  type tuple = readonly ["tesla", "model 3", "model X", "model Y"];
+  type TupleToObject<T extends readonly [...T]> = { [K in T[number]]: K };
+
+  type result = TupleToObject<typeof tuple>;
+  type result2 = TupleToObject<tuple>;
+  // expected { tesla: 'tesla', 'model 3': 'model 3', 'model X': 'model X', 'model Y': 'model Y'}
+
+  const str = "223";
+
+  type FirstLetterOf2<T extends string> =
+    T extends `${string}${infer TFirst}${string}` ? TFirst : never;
+
+  type result3 = FirstLetterOf2<typeof str>;
+
+  type UnpackPromiseArray<P> = P extends Promise<infer K>[] ? K : any;
+  const arr = [Promise.resolve(1)];
+  type ExpectedBoolean = UnpackPromiseArray<typeof arr>; // -> boolean
+
+  function generateId(seed: number) {
+    return seed + 5;
+  }
+
+  type Id = ReturnType<typeof generateId>;
+  lookupEntity(generateId(10)); // 이제 에러 안난다
+
+  // generateId의 리턴 타입에 따라 id의 타입도 바뀐다
+  function lookupEntity(id: Id) {
+    // id값으로 엔티티를 쿼리한다
+  }
 }

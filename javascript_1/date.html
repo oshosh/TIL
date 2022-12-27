@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <br/>
+  <h3> 기간 조회하기 </h3>
+  <br/><br/>
+  시작 날짜 : <input class="datepicker" id="strtDate" /> <br/> <br/>
+  종료 날짜 : <input class="datepicker" id="endDate" />
+  <br/><br/><br/>
+  <div>
+    <button name="filterDate" value="1">일주일</button>
+    <button name="filterDate" value="2">3개월</button>
+    <button name="filterDate" value="3">6개월</button>
+    <button name="filterDate" value="4">1년</button>
+  </div>
+ </body>
+
+ <script>
+  // 날짜 포맷("yyyy-MM-dd") 형식으로 반환
+  const dateFormatter = (newDay, today) =>{
+    let year = newDay.getFullYear()
+    let month = newDay.getMonth()+1
+    let date = newDay.getDate()
+
+    // 기존 날짜와 새로운 날짜가 다를 경우 
+    if(today) {
+      let todayDate = today.getDate()
+      if(date != todayDate) {
+        if(month == 0) year-=1
+        month = (month + 11) % 12
+        date = new Date(year, month, 0).getDate()	// 해당 달의 마지막 날짜를 반환
+      }
+    }
+
+    month = ("0"+month).slice(-2)
+    date = ("0"+date).slice(-2)
+
+    return year+"-"+month+"-"+date
+  }
+
+  document.getElementsByName("filterDate").forEach(e=> {
+    e.addEventListener('click', (e) =>{  
+      console.log(e)
+ 
+    let endDate = new Date('2020-02-29')
+    let newDate = new Date('2020-02-29')
+
+    switch(e.target.value) {
+        case '1':
+          console.log("일주일")
+          newDate.setDate(newDate.getDate() - 7)
+          newDate = dateFormatter(newDate)
+          break;
+        case '2':
+          newDate.setMonth(newDate.getMonth() - 3)
+          newDate = dateFormatter(newDate, endDate)
+          console.log("3개월")
+          break;
+        case '3':
+          newDate.setMonth(newDate.getMonth() - 6)
+          newDate = dateFormatter(newDate, endDate)
+          console.log("6개월 전")
+          break;
+        case '4':
+          newDate.setFullYear(newDate.getFullYear() + 1)
+          newDate = dateFormatter(newDate, endDate)
+          console.log("1년 후")
+          break;
+    }
+      
+    })
+  })
+
+  
+ </script>
+</html>

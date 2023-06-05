@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- 네이버 https://ai.webtoons.com/ko/painter 애니메이션 연구 -->
+  <title>이미지 애니메이션</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .section {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: black;
+    }
+    .section-canvas {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="section">
+    <div>첫 번째 섹션</div>
+  </div>
+  <div class="section-canvas">
+    <canvas class="myCanvas" width="800" height="600"></canvas>
+  </div>
+  <div class="section">
+    <div>세 번째 섹션</div>
+  </div>
+
+  <script>
+  
+    const sectionCanvas = document.querySelector(".section-canvas");
+
+    const canvas = document.querySelector(".myCanvas");
+    const ctx = canvas.getContext("2d");
+    const images = [];
+    const totalImages = 199;
+    let currentImageIndex = 0;
+    let isAnimating = true; // 애니메이션 실행 여부 플래그
+    let isDown = true;
+    let isSectionLocked = true; // 섹션 이동 잠금 여부 플래그
+
+    for (let i = 0; i < totalImages; i++) {
+      const image = new Image();
+      const paddedIndex = (i + 1).toString().padStart(2, "0");
+      image.src = `https://ssl.pstatic.net/static/painter/9f5aae/images/main/sprites/intro/ex_${paddedIndex}.png`;
+      images.push(image);
+    }
+
+    function fixScreen() {
+      document.body.style.overflow = 'hidden';
+    }
+
+    function releaseScreen() {
+      document.body.style.overflow = 'auto';
+    }
+
+    const handleWheel = (event) => {
+      if(currentImageIndex < 0) {
+        currentImageIndex = 197
+        isAnimating = false;
+        releaseScreen();
+        return;
+      }
+
+      // 휠 이벤트 방향에 따라 이미지 인덱스 증가 또는 감소
+      if(isAnimating){
+        fixScreen();
+        if (event.deltaY > 0) {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(images[currentImageIndex++], 0, 0);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(images[currentImageIndex--], 0, 0);
+        }
+      }
+
+       if (currentImageIndex >= totalImages && isAnimating) {
+        currentImageIndex = totalImages;
+        isAnimating = false; // 애니메이션 종료
+        currentImageIndex = 197
+        releaseScreen();
+      }
+    }
+
+    const callback = ([entry], observer) => {
+      if(entry.isIntersecting) {
+        if(isAnimating) {
+          window.addEventListener("wheel", handleWheel);
+        }else{
+          isDown = !isDown
+
+          // 위로 올라가는 경우
+          if(currentImageIndex = 197 && !isDown) {
+            currentImageIndex = 197
+          }else{
+            currentImageIndex = 1
+          }
+          // window.removeEventListener("wheel", handleWheel);
+          // observer.unobserve(entry.target);
+          isAnimating = true
+        }
+      }
+    }
+    
+    const observer = new IntersectionObserver(
+      callback,
+      {rootMargin: '80px', threshold: 1}
+    );
+    observer.observe(sectionCanvas);
+  </script>
+</body>
+</html>

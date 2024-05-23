@@ -1,0 +1,158 @@
+# 현재 세션에서 `ONLY_FULL_GROUP_BY` 모드 끄기
+## 영구적으로 설정되는 것은 아닙니다.
+SET SESSION sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));
+SET sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));
+
+# a6 DB 삭제/생성/선택
+drop database if exists a6;
+create database a6;
+use a6;
+
+# 부서(홍보, 기획)
+create table dept (
+	id int unsigned not null primary key auto_increment,
+	regData DATETIME not null,
+	name char(100) not null unique
+);
+
+INSERT into dept
+set regData = NOW(),
+name = '홍보';
+
+INSERT into dept
+set regData = NOW(),
+name = '기획';
+
+SELECT * from dept;
+
+# 사원(홍길동/홍보/5000만원, 홍길순/홍보/6000만원, 임꺽정/기획/4000만원)
+create table emp  (
+	id int unsigned not null primary key auto_increment,
+	regData DATETIME not null,
+	name char(100) not null unique,
+	deptId int unsigned not null,
+	salary int unsigned not null
+);
+
+INSERT into emp 
+set regData = NOW(),
+name = '홍길동',
+deptId = 1,
+salary = 50000000
+
+INSERT into emp 
+set regData = NOW(),
+name = '홍길순',
+deptId = 1,
+salary = 90000000
+
+INSERT into emp 
+set regData = NOW(),
+name = '임꺽정',
+deptId = 2,
+salary = 40000000
+
+select * from emp;
+
+# 사원 수 출력
+SELECT count(*) from emp;
+
+# 가장 큰 사원 번호 출력
+SELECT MAX(id) from emp; 
+
+# 가장 고액 연봉
+SELECT MAX(salary) from emp; 
+
+# 가장 저액 연봉
+SELECT MIN(salary) from emp; 
+
+# 회사에서 1년 고정 지출(인건비)
+SELECT SUM(salary) from emp;
+
+# 부서별, 1년 고정 지출(인건비)
+select d.name, sum(e.salary) as yearPrice
+from emp as e
+inner join dept as d
+on e.deptId = d.id
+group by e.deptId;
+
+# 부서별, 최고연봉
+select d.name, max(e.salary) as MaxSalary
+from emp as e
+inner join dept as d
+on e.deptId = d.id
+group by e.deptId;
+
+# 부서별, 최저연봉
+select d.name, min(e.salary) as MinSalary
+from emp as e
+inner join dept as d
+on e.deptId = d.id
+group by e.deptId;
+
+# 부서별, 평균연봉
+select d.name, AVG(e.salary) as avgSalary
+from emp as e
+inner join dept as d
+on e.deptId = d.id
+group by e.deptId;
+
+
+# 부서별, 부서명, 사원리스트, 평균연봉, 최고연봉, 최소연봉, 사원수 
+## V1(조인 안한 버전)
+SELECT if(deptId = 1, '홍보', '기획') as '부서명',
+GROUP_CONCAT(name order by id desc separator ', ')  as '사원리스트',
+concat(format(truncate(avg(salary), 0), 0), ' 만원') as '연봉'
+from emp 
+group by deptId;
+
+## V2(조인해서 부서명까지 나오는 버전)
+SELECT case 
+when deptId = 1
+then '홍보'
+when deptId = 2
+then '기획'
+else '무소속'
+end as '부서명',
+GROUP_CONCAT(name order by id desc separator ', ')  as '사원리스트',
+concat(format(truncate(avg(salary), 0), 0), ' 만원') as '연봉'
+from emp 
+group by deptId;
+
+## V3(V2에서 평균연봉이 5000이상인 부서로 추리기)
+SELECT D.name AS 부서,
+GROUP_CONCAT(E.name) AS 사원리스트,
+CONCAT(FORMAT(AVG(E.salary), 0), '만원') AS `평균연봉`,
+MAX(E.salary) AS 최고연봉,
+MIN(E.salary) AS 최소연봉,
+COUNT(*) AS 사원수
+FROM emp AS E
+INNER JOIN dept AS D
+ON E.deptId = D.id
+GROUP BY E.deptId
+HAVING `평균연봉` >= '5,000,000만원';
+
+## V4(V3에서 HAVING 없이 서브쿼리로 수행)
+### HINT, UNION을 이용한 서브쿼리
+# SELECT *
+# FROM (
+#     SELECT 1 AS id
+#     UNION
+#     SELECT 2
+#     UNION
+#     SELECT 3
+# ) AS A
+select * 
+from (
+	SELECT D.name AS 부서,
+	GROUP_CONCAT(E.name) AS 사원리스트,
+	CONCAT(FORMAT(AVG(E.salary), 0), '만원') AS `평균연봉`,
+	MAX(E.salary) AS 최고연봉,
+	MIN(E.salary) AS 최소연봉,
+	COUNT(*) AS 사원수
+	FROM emp AS E
+	INNER JOIN dept AS D
+	ON E.deptId = D.id
+	GROUP BY E.deptId
+) as dept
+where dept.`평균연봉` >= '5,000,000만원';

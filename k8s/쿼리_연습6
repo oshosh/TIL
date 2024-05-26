@@ -1,0 +1,155 @@
+# a6 DB 삭제/생성/선택
+DROP DATABASE IF EXISTS a6;
+CREATE DATABASE a6;
+USE a6;
+
+# 부서(홍보, 기획, IT)
+CREATE TABLE dept (
+    id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    `name` CHAR(100) NOT NULL UNIQUE
+);
+
+INSERT INTO dept
+SET regDate = NOW(),
+`name` = '홍보';
+
+INSERT INTO dept
+SET regDate = NOW(),
+`name` = '기획';
+
+INSERT INTO dept
+SET regDate = NOW(),
+`name` = 'IT';
+
+# 사원(홍길동/홍보/5000만원, 홍길순/홍보/6000만원, 임꺽정/기획/4000만원)
+## IT부서는 아직 사원이 없음
+CREATE TABLE emp (
+    id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    `name` CHAR(100) NOT NULL,
+    deptId INT UNSIGNED NOT NULL,
+    salary INT UNSIGNED NOT NULL
+);
+
+INSERT INTO emp
+SET regDate = NOW(),
+`name` = '홍길동',
+deptId = 1,
+salary = 5000;
+
+INSERT INTO emp
+SET regDate = NOW(),
+`name` = '홍길순',
+deptId = 1,
+salary = 6000;
+
+INSERT INTO emp
+SET regDate = NOW(),
+`name` = '임꺽정',
+deptId = 2,
+salary = 4000;
+
+# 전 사원에 대하여, [부서명, 사원번호, 사원명] 양식으로 출력(IT 부서는 안나옴)
+SELECT * from emp;
+SELECT * from dept d ;
+
+SELECT d.name as '부서명', e.id as '사원번호', e.name as '사원명'
+from emp e
+inner join dept d 
+on e.deptId = d.id; 
+
+# 전 사원에 대하여, [부서명, 사원번호, 사원명] 양식으로 출력(IT 부서가 아직 사원이 없더라도, 1줄이라도 나오도록 해주세요, LEFT JOIN 필요)
+## IT부서는 [IT, NULL, NULL] 으로 출력
+SELECT d.name as '부서명', e.id as '사원번호', e.name as '사원명'
+from dept d
+left join emp e #왼쪽을 기준으로해서 오른쪽 테이블을 매칭 후 없으면 null로 반환
+on e.deptId = d.id;
+
+# 전 사원에 대하여, [부서명, 사원번호, 사원명] 양식으로 출력
+## IT부서는 [IT, 0, -] 으로 출력
+SELECT d.name as '부서명',
+case when e.id is null then 0 else e.id end as '사원번호', 
+case when e.name is null then '-' else e.name end as '사원명'
+from dept d
+left join emp e #왼쪽을 기준으로해서 오른쪽 테이블을 매칭 후 없으면 null로 반환
+on e.deptId = d.id;
+
+# 모든 부서별, 최고연봉, IT부서는 0원으로 표시
+SELECT COALESCE(e.salary, 0) as '최고연봉', d.name
+from dept d
+left join (
+	select max(e2.salary) as max_salary, e2.deptId 
+	from emp as e2
+	group by e2.deptId
+) sub
+on sub.deptId = d.id
+left join emp e
+on e.deptId = d.id
+and sub.max_salary = e.salary;
+
+
+# 모든 부서별, 최저연봉, IT부서는 0원으로 표시
+SELECT COALESCE(e.salary, 0) as '최저연봉', d.name
+from dept d
+left join (
+	select min(e2.salary) as min_salary, e2.deptId 
+	from emp as e2
+	group by e2.deptId
+) sub
+on sub.deptId = d.id
+left join emp e
+on e.deptId = d.id
+and sub.min_salary = e.salary;
+
+# 모든 부서별, 평균연봉, IT부서는 0원으로 표시
+SELECT d.name, COALESCE(sub.avg_salary, 0) as '평균연봉'
+from dept d
+left join (
+	select avg(e2.salary) as avg_salary, e2.deptId 
+	from emp as e2
+	group by e2.deptId
+) sub
+on sub.deptId = d.id
+left join emp e
+on e.deptId = d.id
+and sub.avg_salary = e.salary;
+
+
+# 하나의 쿼리로 최고연봉자와 최저연봉자의 이름과 연봉
+
+(
+	SELECT COALESCE(e.salary, 0) as '최고연봉', d.name,  '최고연봉자' AS `타입`
+	from dept d
+	left join (
+		select max(e2.salary) as max_salary, e2.deptId 
+		from emp as e2
+		group by e2.deptId
+	) sub
+	on sub.deptId = d.id
+	left join emp e
+	on e.deptId = d.id
+	and sub.max_salary = e.salary
+	order by e.salary desc
+	limit 1
+)
+UNION ALL # 중복 허용
+(
+	SELECT COALESCE(e.salary, 0) as '최저연봉', d.name, '최저연봉자' AS `타입`
+	from dept d
+	left join (
+		select min(e2.salary) as min_salary, e2.deptId 
+		from emp as e2
+		group by e2.deptId
+	) sub
+	on sub.deptId = d.id
+	left join emp e
+	on e.deptId = d.id
+	and sub.min_salary = e.salary
+	order by e.salary asc
+	limit 1
+)
+ORDER BY `타입` ASC;
+
+# left join은 굳이 서브쿼리 조인이 필요하지 않음 필요하지 않는 데이터를 필터링 할 필요가 없기 때문..
+# inner join의 경우만 서브쿼리 조인을 생각해보자..

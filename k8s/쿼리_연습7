@@ -1,0 +1,118 @@
+# 현재 세션에서 `ONLY_FULL_GROUP_BY` 모드 끄기
+## 영구적으로 설정되는 것은 아닙니다.
+SET SESSION sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));
+SET sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));
+
+# a6 DB 삭제/생성/선택
+DROP DATABASE IF EXISTS a6;
+CREATE DATABASE a6;
+USE a6;
+
+# 부서(홍보, 기획)
+CREATE TABLE dept (
+    id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    `name` CHAR(100) NOT NULL UNIQUE
+);
+
+INSERT INTO dept
+SET regDate = NOW(),
+`name` = '홍보';
+
+INSERT INTO dept
+SET regDate = NOW(),
+`name` = '기획';
+
+INSERT INTO dept
+SET regDate = NOW(),
+`name` = 'IT';
+
+# 사원(홍길동/홍보/5000만원, 홍길순/홍보/6000만원, 임꺽정/기획/4000만원)
+CREATE TABLE emp (
+    id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    `name` CHAR(100) NOT NULL,
+    deptId INT UNSIGNED NOT NULL,
+    salary INT UNSIGNED NOT NULL
+);
+
+INSERT INTO emp
+SET regDate = NOW(),
+`name` = '홍길동',
+deptId = 1,
+salary = 5000;
+
+INSERT INTO emp
+SET regDate = NOW(),
+`name` = '홍길순',
+deptId = 1,
+salary = 6000;
+
+INSERT INTO emp
+SET regDate = NOW(),
+`name` = '임꺽정',
+deptId = 2,
+salary = 4000;
+
+# 정답
+# 부서명  |  사원수
+# 홍보   |    2
+# 기획   |    1
+# IT    |    0
+
+select * from emp e ;
+select * from dept d ;
+
+## 1단계 : dept 테이블과 CASE 문법으로 정답을 흉내내주세요.
+SELECT d.name as '부서명',
+case when d.id = 1 then 2 when d.id = 2 then 1 else 0 end as '사원수'
+from dept d
+order by '사원수' ASC;
+
+## 2단계 : emp 테이블을 통해서 각 부서별 부서번호와 사원수를 출력해주세요. IT 부서는 누락되어도 됩니다.
+SELECT E.deptId AS `부서번호`,
+COUNT(*) AS `사원수`
+FROM emp AS E
+GROUP BY E.deptId;
+
+
+## 3단계 : 2단계에서 부서번호를 부서명으로 변경해주세요. INNER JOIN 사용. IT 부서는 누락되어도 됩니다.
+SELECT e.deptId as '부서명', 
+CONCAT(COUNT(e.name), '명')  as '사원수'
+from emp as e 
+inner join dept as d
+on e.deptId = d.id
+group by d.id;
+
+## 4단계 : LEFT JOIN 을 사용하여, IT부서가 노출되도록 하고 GROUP BY 를 해제해주세요. 사원이 없으면 인원이 0명으로 나오게 해주세요.
+## 사원수 컬럼 : 사원이 있으면 1
+## 사원수 컬럼 : 사원이 없으면 0
+SELECT d.name AS `부서명`,
+d.id AS `부서번호`,
+e.id AS `사원번호`,
+if(e.deptId is not null, 1, 0) as `인원`
+from  dept as d
+left join emp as e
+on e.deptId = d.id;
+
+
+## 5단계 : GROUP BY 와 SUM 을 통해서 각 부서별 부서명과 사원수를 출력해주세요.
+## 정답 v1 : SUM 과 IF 를 사용한 버전
+SELECT d.name AS `부서명`,
+SUM(IF(e.id IS NOT NULL, 1, 0)) AS `사원수`
+from  dept as d
+left join emp as e
+on e.deptId = d.id
+group by d.id
+order by d.id ASC;
+
+
+## 6단계 : COUNT 를 통해서 각 부서별 부서명과 사원수를 출력해주세요.
+## 정답 v2 : COUNT 를 사용한 버전
+SELECT D.name AS `부서명`,
+COUNT(E.id) AS `사원수` # count(*) 으로 하면 안되는게 group by이후 사원수는 겹쳐져 있기 때문에 실제 id가 null이 아닌걸 count해야함.
+FROM dept AS D
+LEFT JOIN emp AS E
+ON D.id = E.deptId
+GROUP BY D.id
+ORDER BY D.id ASC;

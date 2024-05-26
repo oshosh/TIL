@@ -1,0 +1,89 @@
+# 현재 세션에서 `ONLY_FULL_GROUP_BY` 모드 끄기
+## 영구적으로 설정되는 것은 아닙니다.
+SET SESSION sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));
+SET sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));
+
+# a6 DB 삭제/생성/선택
+DROP DATABASE IF EXISTS a6;
+CREATE DATABASE a6;
+USE a6;
+
+# 부서(홍보, 기획)
+CREATE TABLE dept (
+    id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    `name` CHAR(100) NOT NULL UNIQUE
+);
+
+INSERT INTO dept
+SET regDate = NOW(),
+`name` = '홍보';
+
+INSERT INTO dept
+SET regDate = NOW(),
+`name` = '기획';
+
+# 사원(홍길동/홍보/5000만원, 홍길순/홍보/6000만원, 임꺽정/기획/4000만원)
+CREATE TABLE emp (
+    id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    `name` CHAR(100) NOT NULL,
+    deptId INT UNSIGNED NOT NULL,
+    salary INT UNSIGNED NOT NULL
+);
+
+INSERT INTO emp
+SET regDate = NOW(),
+`name` = '홍길동',
+deptId = 1,
+salary = 5000;
+
+INSERT INTO emp
+SET regDate = NOW(),
+`name` = '홍길순',
+deptId = 1,
+salary = 6000;
+
+INSERT INTO emp
+SET regDate = NOW(),
+`name` = '임꺽정',
+deptId = 2,
+salary = 4000;
+
+# 1단계 : 각 부서별 최고연봉자의 연봉을 구한다.
+SELECT * from dept d ;
+SELECT * from emp;
+
+SELECT e.deptId, MAX(e.salary) as '최고 연봉' 
+FROM emp e
+GROUP BY e.deptId;
+
+
+# 2단계 : 전체 사원 중에서 자신이 속한 부서의 최고 연봉과 맞지 않는 사원들을 전부 필터링한다.
+SELECT d.name as '부서명', e.name as '이름', max(e.salary) as '연봉' 
+from emp as e
+inner join dept as d
+on d.id = e.deptId
+inner JOIN (
+	select e2.deptId, max(e2.salary) as max_salary
+	from emp e2 
+	group by e2.deptId
+) sub
+on sub.deptId = e.deptId 
+and sub.max_salary = e.salary 
+GROUP BY e.deptId;
+
+
+# 3단계 : 입사일 추가, 부서명 추가(추가적으로 dept 테이블 join)
+SELECT d.name as '부서명', e.name as '이름', CONCAT(FORMAT(e.salary ,0), '연봉') as '연봉', DATE(e.regDate) as '입사일'
+from emp as e
+inner join dept as d
+on d.id = e.deptId
+inner JOIN (
+	select e2.deptId, max(e2.salary) as max_salary
+	from emp e2 
+	group by e2.deptId
+) sub
+on sub.deptId = e.deptId 
+and sub.max_salary = e.salary 
+GROUP BY e.deptId;
